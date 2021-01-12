@@ -17,22 +17,24 @@ public class MainActivity extends AppCompatActivity {
     "南京路步行街 人民广场 外滩 大床房",
     "迪缘小舍/迪士尼乐园接送/日式白色屋顶"};
     private String[] prices = {"￥628","￥455","￥575"};
-    private ListView listView1 = findViewById(R.id.home_list1);
-    private ListView listView2 = findViewById(R.id.home_list2);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTheme(R.style.AppTheme);
+        ListView listView1 = findViewById(R.id.home_list1);
+        ListView listView2 = findViewById(R.id.home_list2);
         MyBaseAdapter adapter = new MyBaseAdapter();
         listView1.setAdapter(adapter);
-//        listView2.setAdapter(adapter);
+        listView2.setAdapter(adapter);
     }
     class MyBaseAdapter extends BaseAdapter{
 
         @Override
         public int getCount() {
-            return icons.length;
+            return details.length;
         }
 
         @Override
@@ -48,14 +50,15 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = View.inflate(MainActivity.this,R.layout.home_listitem,null);
+
             TextView list_price = view.findViewById(R.id.home_list_price);
             TextView list_detail = view.findViewById(R.id.home_list_detail);
             ImageView list_icon = view.findViewById(R.id.home_list_itemicon);
             list_detail.setText(details[position]);
             list_price.setText(prices[position]);
-            list_icon.setBackgroundResource(icons[position]);
+            list_icon.setImageResource(icons[position]);
 
-            return convertView;
+            return view;
         }
     }
 }
