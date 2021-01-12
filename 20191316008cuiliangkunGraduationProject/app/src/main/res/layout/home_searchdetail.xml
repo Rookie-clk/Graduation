@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="15dp">
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="全球城市/区域/位置"
+    android:textColor="#000"
+    ></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="入住日期"
+        ></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="关键字/位置/民宿名"
+        ></EditText>
+    <Button
+        android:id="@+id/search"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        ></Button>
+</LinearLayout>
