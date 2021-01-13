@@ -25,10 +25,10 @@
     <Button
         android:id="@+id/search"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="查询特价房11源"
+        android:text="查询特价房源"
+        android:gravity="center"
         android:textColor="#fff"
         android:background="#000"
         ></Button>
