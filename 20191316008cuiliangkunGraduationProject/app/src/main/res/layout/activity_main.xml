@@ -31,7 +31,7 @@
            android:layout_height="wrap_content"
            android:orientation="horizontal">
            <Button
-               android:id="@+id/dom"
+               android:id="@+id/btn_home_dom"
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_weight="1"
@@ -41,7 +41,7 @@
                android:textSize="20sp"
                ></Button>
            <Button
-               android:id="@+id/spec"
+               android:id="@+id/btn_home_spec"
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_weight="1"
@@ -53,10 +53,20 @@
                ></Button>
        </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/home_searchdetail"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"></FrameLayout>
+            android:layout_height="wrap_content"
+            >
+            <FrameLayout
+                android:id="@+id/home_searchdetail"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/home_spec_searchdetail"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"></FrameLayout>
+        </RelativeLayout>
+
     </LinearLayout>
     <ImageView
         android:layout_width="wrap_content"
