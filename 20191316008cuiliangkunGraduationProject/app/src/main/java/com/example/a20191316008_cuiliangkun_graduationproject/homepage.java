@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +22,9 @@ public class homepage extends Fragment {
             "迪缘小舍/迪士尼乐园接送/日式白色屋顶"};                 //底部listview
     private String[] prices = {"￥628","￥455","￥575"};
 
-
+    public View view;
+    private ListView mlistView1;
+    private ListView mlistView2;
     private LinearLayout dom_search_Lin;
     private LinearLayout spec_search_Lin;       //搜索栏
     private Button button_dom;
@@ -31,8 +34,23 @@ public class homepage extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.homepage,container,false);
+        view = inflater.inflate(R.layout.homepage,container,false);
+
+        if (view!=null){
+            initView();
+        }
+
         return view;
+    }
+
+
+    private void initView() {
+        mlistView1 = (ListView) view.findViewById(R.id.home_list1);
+        mlistView2 = (ListView) view.findViewById(R.id.home_list2);
+        if (icons != null) {                                      //页面加载时，就要放置adapter来显示菜单
+            mlistView1.setAdapter(new MyBaseAdapter());
+            mlistView2.setAdapter(new MyBaseAdapter());
+        }
     }
 
     @Override
@@ -61,15 +79,16 @@ public class homepage extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
+            convertView = View.inflate(getActivity(),R.layout.home_listitem,null);
 
-            TextView list_price = view.findViewById(R.id.home_list_price);
-            TextView list_detail = view.findViewById(R.id.home_list_detail);
-            ImageView list_icon = view.findViewById(R.id.home_list_itemicon);
+            TextView list_price = convertView.findViewById(R.id.home_list_price);
+            TextView list_detail = convertView.findViewById(R.id.home_list_detail);
+            ImageView list_icon = convertView.findViewById(R.id.home_list_itemicon);
             list_detail.setText(details[position]);
             list_price.setText(prices[position]);
             list_icon.setImageResource(icons[position]);
 
-            return view;
+            return convertView;
         }
     }
 }
