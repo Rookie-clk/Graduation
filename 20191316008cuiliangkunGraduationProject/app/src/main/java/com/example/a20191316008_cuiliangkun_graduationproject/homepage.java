@@ -1,15 +1,18 @@
 package com.example.a20191316008_cuiliangkun_graduationproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +27,7 @@ public class homepage extends Fragment implements View.OnClickListener {
             "迪缘小舍/迪士尼乐园接送/日式白色屋顶"};                 //底部listview
     private String[] prices = {"￥628","￥455","￥575"};
 
+
     public View view;
     private ListView mlistView1;
     private ListView mlistView2;
@@ -33,6 +37,9 @@ public class homepage extends Fragment implements View.OnClickListener {
     private Button button_spec;
     private dom_search_frag dom_search_frag;
     private spec_search_frag spec_search_frag;
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +53,23 @@ public class homepage extends Fragment implements View.OnClickListener {
         initsView();                         //搜索栏
         initEvent();
         selectTab(0);
+
+        mlistView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //listview点击事件
+
+                        Intent intent = new Intent(getActivity(),hotelpage.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("hotelid",position);
+                        intent.putExtras(bundle);                   //传输给hotelpage的id，并跳转
+                        getActivity().startActivity(intent);
+
+            }
+        });
+
+
+
+
         return view;
     }
 
@@ -60,13 +84,13 @@ public class homepage extends Fragment implements View.OnClickListener {
     }
     public  void initsView(){
         dom_search_Lin = view.findViewById(R.id.home_searchdetail_Lin);
-        spec_search_Lin=view.findViewById(R.id.home_spec_searchdetail_Lin);
+        spec_search_Lin=view.findViewById(R.id.home_spec_searchdetail_Lin); //搜索栏
 
         button_dom = view.findViewById(R.id.btn_home_dom);
         button_spec = view.findViewById(R.id.btn_home_spec);
    }
    public void initEvent(){
-        button_dom.setOnClickListener(this);
+        button_dom.setOnClickListener(this);   //搜索栏点击事件初始化
         button_spec.setOnClickListener(this);
    }
 
@@ -81,7 +105,7 @@ public class homepage extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.btn_home_dom:
                 selectTab(0);
-//                Toast.makeText(MainActivity.this,"123",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this,"123",Toast.LENGTH_SHORT).show();   //搜索栏点击事件
                 break;
             case R.id.btn_home_spec:
                 selectTab(1);
@@ -169,6 +193,11 @@ public class homepage extends Fragment implements View.OnClickListener {
             return convertView;
         }
     }
+
+
+
+
+
 }
 
 
