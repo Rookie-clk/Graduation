@@ -50,9 +50,11 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
                 if(count%2==0) {
                     btn_love.setBackgroundResource(R.mipmap.favorite_filling_red); //收藏
                     count++;
+                    Toast.makeText(hotelpage.this,"已收藏",Toast.LENGTH_SHORT).show();
                 }else{
                     btn_love.setBackgroundResource(R.mipmap.favorite);  //取消收藏
                     count++;
+                    Toast.makeText(hotelpage.this,"已取消收藏",Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.hotelpage_back:

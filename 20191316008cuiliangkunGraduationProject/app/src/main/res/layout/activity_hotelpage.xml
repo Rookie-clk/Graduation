@@ -32,12 +32,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         >
         <ImageButton
             android:id="@+id/hotelpage_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/back"
+            android:layout_marginLeft="10dp"
             android:background="#00000000"></ImageButton>
         <ImageButton
             android:id="@+id/hotelpage_love"
@@ -50,6 +52,7 @@
 
 </RelativeLayout>
 
+<!--        房屋信息-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,17 +131,28 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_margin="10dp"
-            android:background="#D3D3D3"
+            android:background="#F5F5F5"
             android:padding="5dp"
+            android:layout_marginBottom="10dp"
             >
             <TextView
+                android:id="@+id/hotelscore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5.0"
+                android:text="4.8"
                 android:textSize="25sp"
                 android:textColor="	#1E90FF"
                 android:textStyle="bold"
                 android:layout_marginLeft="5dp"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/5.0"
+                android:textSize="15sp"
+                android:textColor="	#000"
+                android:textStyle="bold"
+                android:layout_marginLeft="0dp"
                 ></TextView>
             <TextView
                 android:layout_width="wrap_content"
@@ -153,15 +167,203 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
-                android:layout_marginLeft="180dp"
                 android:textColor="#1E90FF"
                 android:textStyle="bold"
-                android:text="点评>"
-                android:textSize="20sp"
+                android:text="查看点评>"
+                android:textSize="15sp"
+                android:layout_marginLeft="140dp"
+
                 ></Button>
 
         </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5"></View>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="房屋设施"
+                android:layout_margin="10dp"
+                ></TextView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#DCDCDC"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="基础设施"
+                    android:layout_margin="10dp"
+                    ></TextView>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:layout_margin="10dp"
+                    android:textColor="#000"
+                    android:text="无线网络  电梯  落地窗  空调  无线网络  电梯  落地窗  空调  无线网络  电梯  落地窗  空调  无线网络  电梯  落地窗  空调  ">
+                </TextView>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="基础设施"
+                        android:layout_margin="10dp"
+                        ></TextView>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:layout_margin="10dp"
+                        android:textColor="#000"
+                        android:text="无线网络  电梯  落地窗  空调  无线网络  电梯  落地窗  空调  无线网络  电梯  落地窗  空调  无线网络  电梯  落地窗  空调  ">
+                    </TextView>
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
+
+<!--        房东其他民宿-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="房东其他房源"
+                android:layout_margin="10dp"
+                ></TextView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#DCDCDC"
+                >
+            </View>
+<!--1-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/cyber"
+                    android:adjustViewBounds="true"
+                    ></ImageView>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="浦东核心地段地铁旁3卧复式近会展中心"
+                        android:layout_margin="10dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        >
+                    </TextView>
+                    <Button
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:text="查看详情"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:background="#1E90FF"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        ></Button>
+                </LinearLayout>
+            </LinearLayout>
+
+
+<!--2-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/cyber"
+                    android:adjustViewBounds="true"
+                    ></ImageView>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="浦东核心地段地铁旁3卧复式近会展中心"
+                        android:layout_margin="10dp"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        >
+                    </TextView>
+                    <Button
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:text="查看详情"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:background="#1E90FF"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        ></Button>
+                </LinearLayout>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F5F5F5"></View>
+        </LinearLayout>
+
+
+
+<!--        房屋点评-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -169,6 +371,7 @@
             android:background="#fff"
 
             >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,13 +387,220 @@
                 android:background="#DCDCDC"
                 >
             </View>
+
+<!--            评分-->
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="horizontal"
+               android:background="#fff"
+               android:layout_margin="10dp"
                >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/hotelscore2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.8"
+                    android:textSize="35sp"
+                    android:textStyle="bold"
+                    android:textColor="#1E90FF"
+                    android:layout_marginLeft="10dp"
+                    ></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/5.0"
+                    android:textSize="15sp"
+                    android:textColor="	#000"
+                    android:textStyle="bold"
+                    ></TextView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="超赞"
+                    android:textSize="15sp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    ></TextView>
+            </LinearLayout>
+
+               <LinearLayout
+                   android:layout_width="0dp"
+                   android:layout_weight="1.5"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   android:layout_margin="10dp">
+
+
+               <LinearLayout
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal">
+                   <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="如实描述"
+                   android:layout_marginLeft="10dp"></TextView>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textStyle="bold"
+                       android:text="5.0"
+                       android:textColor="#000"
+                       android:layout_marginLeft="3dp"
+                       ></TextView>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="服务周到"
+                       android:layout_marginLeft="10dp"></TextView>
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textStyle="bold"
+                       android:text="5.0"
+                       android:textColor="#000"
+                       android:layout_marginLeft="3dp"
+                       ></TextView>
+               </LinearLayout>
+
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="位置便利 "
+                           android:layout_marginLeft="10dp"></TextView>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:textStyle="bold"
+                           android:text="5.0"
+                           android:textColor="#000"
+                           android:layout_marginLeft="3dp"
+                           ></TextView>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="干净卫生"
+                           android:layout_marginLeft="10dp"></TextView>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:textStyle="bold"
+                           android:text="5.0"
+                           android:textColor="#000"
+                           android:layout_marginLeft="3dp"
+                           ></TextView>
+                   </LinearLayout>
+                   <LinearLayout
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="高性价比"
+                           android:layout_marginLeft="10dp"></TextView>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:textStyle="bold"
+                           android:text="5.0"
+                           android:textColor="#000"
+                           android:layout_marginLeft="3dp"
+                           ></TextView>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="入住便捷"
+                           android:layout_marginLeft="10dp"></TextView>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:textStyle="bold"
+                           android:text="5.0"
+                           android:textColor="#000"
+                           android:layout_marginLeft="3dp"
+                           ></TextView>
+                   </LinearLayout>
+               </LinearLayout>
            </LinearLayout>
+
+
+<!--            评论-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#F5F5F5"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:src="@drawable/avatar"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="clk111"
+                        android:textColor="#000"
+                        android:textStyle="bold"
+
+                        ></TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="xxxx-xx-xx入住"
+
+                        ></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="房子很好，孩子很喜欢，下次还会来1111111111111111111111111111111111111111111111"
+                            android:textColor="#000"
+                            android:layout_marginTop="5dp"
+                            ></TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:text="查看全部评论>"
+                    android:textColor="#1E90FF"
+                    android:layout_margin="5dp"
+                    android:background="#00000000"
+                    android:textStyle="bold"
+                    ></Button>
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 

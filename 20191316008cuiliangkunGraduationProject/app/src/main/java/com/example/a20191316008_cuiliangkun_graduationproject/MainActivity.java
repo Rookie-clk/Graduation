@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 1:
-                mImg2.setImageResource(R.mipmap.favorite_filling);
+                mImg2.setImageResource(R.mipmap.file_filling);
                 if (mFrag2 == null) {
                     mFrag2 = new homepage();
                     transaction.add(R.id.id_content, mFrag2);
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 2:
-                mImg3.setImageResource(R.mipmap.comment_filling);
+                mImg3.setImageResource(R.mipmap.favorite_filling);
                 if (mFrag3 == null) {
                     mFrag3 = new homepage();
                     transaction.add(R.id.id_content, mFrag3);
@@ -332,8 +332,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //将四个ImageButton置为灰色
     private void resetImgs() {
         mImg1.setImageResource(R.mipmap.home);
-        mImg2.setImageResource(R.mipmap.favorite);
-        mImg3.setImageResource(R.mipmap.comment);
+        mImg2.setImageResource(R.mipmap.file);
+        mImg3.setImageResource(R.mipmap.favorite);
         mImg4.setImageResource(R.mipmap.user);
     }
 }

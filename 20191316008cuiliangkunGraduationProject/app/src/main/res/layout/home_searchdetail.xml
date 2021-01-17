@@ -22,6 +22,11 @@
         android:layout_height="wrap_content"
         android:hint="关键字/位置/民宿名"
         ></EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="关键字/位置/民宿名"
+        ></EditText>
     <Button
         android:id="@+id/search"
         android:layout_marginTop="10dp"

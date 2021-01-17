@@ -61,11 +61,11 @@
                 <FrameLayout
                     android:id="@+id/home_searchdetail"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"></FrameLayout>
+                    android:layout_height="wrap_content"></FrameLayout>
                 <FrameLayout
                     android:id="@+id/home_spec_searchdetail"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"></FrameLayout>
+                    android:layout_height="wrap_content"></FrameLayout>
             </RelativeLayout>
 
         </LinearLayout>

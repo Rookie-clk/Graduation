@@ -12,7 +12,7 @@
     </FrameLayout>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -32,6 +32,7 @@
                 android:src="@mipmap/home"
                 android:background="#00000000"/>
             <TextView
+                android:id="@+id/shouye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#A6A6A6"
@@ -50,13 +51,13 @@
                 android:clickable="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/favorite"
+                android:src="@mipmap/file"
                 android:background="#00000000"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#A6A6A6"
-                android:text="收藏"/>
+                android:text="订单"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/id_tab3"
@@ -71,13 +72,13 @@
                 android:clickable="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/comment"
+                android:src="@mipmap/favorite"
                 android:background="#00000000"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#A6A6A6"
-                android:text="消息"/>
+                android:text="收藏"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/id_tab4"
