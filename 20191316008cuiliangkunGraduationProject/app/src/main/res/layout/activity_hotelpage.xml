@@ -5,10 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".hotelpage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,6 +47,151 @@
             android:layout_marginLeft="250dp"
             android:background="#00000000"></ImageButton>
     </LinearLayout>
+
 </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:layout_marginBottom="10dp">
+        <TextView
+            android:id="@+id/hotelname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="现代轻奢loft复式3卧 恒生万鹏广场"
+            android:textColor="#000"
+            android:layout_margin="10dp"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            ></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#FFE4C4"
+                android:text="实拍"
+                android:layout_marginRight="3dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:textColor="#FF8C00"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#FFE4C4"
+                android:text="超赞房东"
+                android:layout_marginRight="3dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:textColor="#FF8C00"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#FFE4C4"
+                android:text="有停车位"
+                android:layout_marginRight="3dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:textColor="#FF8C00"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#FFE4C4"
+                android:text="近地铁"
+                android:layout_marginRight="3dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                android:textColor="#FF8C00"
+                ></TextView>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="10dp"
+            android:background="#D3D3D3"
+            android:padding="5dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.0"
+                android:textSize="25sp"
+                android:textColor="	#1E90FF"
+                android:textStyle="bold"
+                android:layout_marginLeft="5dp"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="超赞"
+                android:textSize="20sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                ></TextView>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:layout_marginLeft="180dp"
+                android:textColor="#1E90FF"
+                android:textStyle="bold"
+                android:text="点评>"
+                android:textSize="20sp"
+                ></Button>
+
+        </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:text="房客点评"
+                android:layout_margin="10dp"
+                ></TextView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#DCDCDC"
+                >
+            </View>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               >
+
+           </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </ScrollView>
