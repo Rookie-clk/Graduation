@@ -87,7 +87,7 @@ public class searchresult extends AppCompatActivity implements View.OnClickListe
                 Bundle bundle = new Bundle();
                 bundle.putInt("hotelid",hotelid);               //搜索结果页跳转至详情页
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);1
                 }
             });
             hotelname.setText(details[position]);
