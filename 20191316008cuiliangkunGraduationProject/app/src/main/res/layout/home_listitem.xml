@@ -13,26 +13,56 @@
         android:src="@drawable/display"
         android:adjustViewBounds="true"
         ></ImageView>
-    <TextView
-        android:id="@+id/home_list_detail"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:text="橡宿·蔓枝·现代轻奢"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_margin="10dp"
-        ></TextView>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/home_list_price"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="￥653"
-        android:textColor="#000"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/home_list_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="橡宿·蔓枝·现代轻奢"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            ></TextView>
 
-        ></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="整套·1居1床2人·地理位置优越"
+            android:layout_margin="5dp"
+            ></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/home_list_price"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:text="￥653"
+                android:textColor="#1E90FF"
+                ></TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="/晚"
+                android:textColor="#1E90FF"
+                ></TextView>
+
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

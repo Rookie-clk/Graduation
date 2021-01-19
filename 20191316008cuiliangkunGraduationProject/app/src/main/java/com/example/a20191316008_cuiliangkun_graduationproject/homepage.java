@@ -22,7 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class homepage extends Fragment implements View.OnClickListener {
     private int[] icons = {R.drawable.beach,R.drawable.cyber,R.drawable.pool};
-    private String[] details = {"原木双1.8米大床浴缸房，免费私家车接送迪士尼乐园8分钟，有餐厅可以点餐，有泳池、网红海洋球池",
+    private String[] details = {"原木双1.8米大床浴缸房",
             "南京路步行街 人民广场 外滩 大床房",
             "迪缘小舍/迪士尼乐园接送/日式白色屋顶"};                 //底部listview
     private String[] prices = {"￥628","￥455","￥575"};
