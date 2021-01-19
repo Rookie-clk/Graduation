@@ -78,6 +78,16 @@
                 android:textColor="#1E90FF"
                 ></TextView>
 
+            <Button
+                android:id="@+id/searchresult_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="130dp"
+                android:text="查看详情"
+                android:background="#1E90FF"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                ></Button>
         </LinearLayout>
     </LinearLayout>
 
