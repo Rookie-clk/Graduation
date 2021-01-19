@@ -186,19 +186,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private LinearLayout mTab1;
     private LinearLayout mTab2;
     private LinearLayout mTab3;
-    private LinearLayout mTab4;
 
     //声明四个Tab的ImageButton
     private ImageButton mImg1;
     private ImageButton mImg2;
     private ImageButton mImg3;
-    private ImageButton mImg4;
+
 
     //声明四个Tab分别对应的Fragment
     private Fragment mFrag1;
     private Fragment mFrag2;
     private Fragment mFrag3;
-    private Fragment mFrag4;
 
 
     @Override
@@ -221,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTab1.setOnClickListener(this);
         mTab2.setOnClickListener(this);
         mTab3.setOnClickListener(this);
-        mTab4.setOnClickListener(this);
+
     }
 
     private void initViews() {
@@ -229,13 +227,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTab1 = (LinearLayout) findViewById(R.id.id_tab1);
         mTab2 = (LinearLayout) findViewById(R.id.id_tab2);
         mTab3 = (LinearLayout) findViewById(R.id.id_tab3);
-        mTab4 = (LinearLayout) findViewById(R.id.id_tab4);
+
 
         //初始化四个ImageButton
         mImg1 = (ImageButton) findViewById(R.id.id_tab_img1);
         mImg2 = (ImageButton) findViewById(R.id.id_tab_img2);
         mImg3 = (ImageButton) findViewById(R.id.id_tab_img3);
-        mImg4 = (ImageButton) findViewById(R.id.id_tab_img4);
+
     }
 
     //处理Tab的点击事件
@@ -251,9 +249,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.id_tab3:
                 selectTab(2);
-                break;
-            case R.id.id_tab4:
-                selectTab(3);
                 break;
         }
 
@@ -274,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mImg1.setImageResource(R.mipmap.home_filling);
                 //如果第一页对应的Fragment没有实例化，则进行实例化，并显示出来
                 if (mFrag1 == null) {
-                    mFrag1 = new homepage();
+                    mFrag1 = new homepage();//设置页面
                     transaction.add(R.id.id_content, mFrag1);
                 } else {
                     //如果第一页对应的Fragment已经实例化，则直接显示出来
@@ -284,30 +279,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case 1:
                 mImg2.setImageResource(R.mipmap.file_filling);
                 if (mFrag2 == null) {
-                    mFrag2 = new homepage();
+                    mFrag2 = new order();
                     transaction.add(R.id.id_content, mFrag2);
                 } else {
                     transaction.show(mFrag2);
                 }
                 break;
             case 2:
-                mImg3.setImageResource(R.mipmap.favorite_filling);
+                mImg3.setImageResource(R.mipmap.user_filling);
                 if (mFrag3 == null) {
-                    mFrag3 = new homepage();
+                    mFrag3 = new userpage();
                     transaction.add(R.id.id_content, mFrag3);
                 } else {
                     transaction.show(mFrag3);
                 }
                 break;
-            case 3:
-                mImg4.setImageResource(R.mipmap.user_filling);
-                if (mFrag4 == null) {
-                    mFrag4 = new Fragment();
-                    transaction.add(R.id.id_content, mFrag4);
-                } else {
-                    transaction.show(mFrag4);
-                }
-                break;
+
         }
         //不要忘记提交事务
         transaction.commit();
@@ -324,17 +311,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mFrag3 != null) {
             transaction.hide(mFrag3);
         }
-        if (mFrag4 != null) {
-            transaction.hide(mFrag4);
-        }
+
     }
 
     //将四个ImageButton置为灰色
     private void resetImgs() {
         mImg1.setImageResource(R.mipmap.home);
         mImg2.setImageResource(R.mipmap.file);
-        mImg3.setImageResource(R.mipmap.favorite);
-        mImg4.setImageResource(R.mipmap.user);
+        mImg3.setImageResource(R.mipmap.user);
+
     }
 }
 

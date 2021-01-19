@@ -67,9 +67,6 @@ public class homepage extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
-
         return view;
     }
 
