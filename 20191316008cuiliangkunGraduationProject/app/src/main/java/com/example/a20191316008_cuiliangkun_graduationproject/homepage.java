@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -31,6 +32,7 @@ public class homepage extends Fragment implements View.OnClickListener {
     public View view;
     private ListView mlistView1;
     private ListView mlistView2;
+    private GridView mGridView;
     private LinearLayout dom_search_Lin;
     private LinearLayout spec_search_Lin;       //搜索栏
     private Button button_dom;
@@ -72,11 +74,13 @@ public class homepage extends Fragment implements View.OnClickListener {
 
 
     private void initView() {
+//        mGridView = (GridView) view.findViewById(R.id.home_list1);
         mlistView1 = (ListView) view.findViewById(R.id.home_list1);
-        mlistView2 = (ListView) view.findViewById(R.id.home_list2);
+//        mlistView2 = (ListView) view.findViewById(R.id.home_list2);
         if (icons != null) {                                      //页面加载时，就要放置adapter来显示菜单
             mlistView1.setAdapter(new MyBaseAdapter());
-            mlistView2.setAdapter(new MyBaseAdapter());
+//            mlistView2.setAdapter(new MyBaseAdapter());
+//            mGridView.setAdapter(new MyBaseAdapter());
         }
     }
     public  void initsView(){
