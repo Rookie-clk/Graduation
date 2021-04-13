@@ -63,8 +63,15 @@ public class userpage extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.userpage_info:
+
                 break;
             case R.id.userpage_wantbeowner:
+
+                Intent wbointent = new Intent(getActivity(),wbo.class);
+                Bundle wbobundle = new Bundle();
+                wbobundle.putInt("hotelid",1);
+                wbointent.putExtras(wbobundle);
+                getActivity().startActivity(wbointent);
                 break;
         }
     }

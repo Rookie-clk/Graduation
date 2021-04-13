@@ -1,6 +1,9 @@
 package com.example.a20191316008_cuiliangkun_graduationproject;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +24,23 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class homepage extends Fragment implements View.OnClickListener {
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class homepage extends Fragment implements View.OnClickListener  {
     private int[] icons = {R.drawable.beach,R.drawable.cyber,R.drawable.pool};
     private String[] details = {"原木双1.8米大床浴缸房",
             "南京路步行街 人民广场 外滩 大床房",
             "迪缘小舍/迪士尼乐园接送/日式白色屋顶"};                 //底部listview
-    private String[] prices = {"￥628","￥455","￥575"};
-
+    private String[] prices = {"628","455","575"};
 
     public View view;
     private ListView mlistView1;
@@ -39,13 +52,19 @@ public class homepage extends Fragment implements View.OnClickListener {
     private Button button_spec;
     private dom_search_frag dom_search_frag;
     private spec_search_frag spec_search_frag;
-
-
-
+    public static List<Testinfo> datalist= new ArrayList<>();
+//    List<String> datalist= new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         view = inflater.inflate(R.layout.activity_homepage,container,false);
+        sql();
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         if (view!=null){
             initView();
@@ -71,6 +90,49 @@ public class homepage extends Fragment implements View.OnClickListener {
 
         return view;
     }
+    private static void sql() {
+        new Thread(new Runnable() {
+            @Override
+            public synchronized void run() {
+                try {
+                    //第一步  寻找这个驱动，JVM加入内存
+                    Class.forName("com.mysql.jdbc.Driver");
+                    System.out.println("ClassforName成功");
+                    //第二步  通过connection数据库建立链接对象
+                    java.sql.Connection cn = DriverManager.getConnection("jdbc:mysql://192.168.1.133:3306/testdb","root","123456");
+                    System.out.println("Connection连接数据库成功");
+                    //第三步 通过cn链接对象 创建一个statement对象，操作对象
+                    Statement st =cn.createStatement();
+                    //第四步 写一个SQL语句
+                    String sql = "select * from test";
+                    //第五步 执行SQL语句，返回结果集到rs对象
+                    //statement类的executeQuery()方法来下达select指令以查询数据库
+                    ResultSet rs=st.executeQuery(sql);
+
+                    //第六步 返回结果集得到字符串，某一列
+
+                    while (rs.next()){
+                        Testinfo testinfo = new Testinfo();
+                        testinfo.name=rs.getString("name");
+                        testinfo.detail = rs.getString("sex");
+                        testinfo.price = rs.getInt("age");
+                        datalist.add(testinfo);
+//                        System.out.println(datalist.size());
+                    }
+                    //class 异常
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                    System.out.println("ClassforName失败");
+                    //Connection 异常
+                }  catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Connection连接数据库失败");
+                }
+            }
+        }).start();
+
+    }
+
 
 
     private void initView() {
@@ -83,6 +145,9 @@ public class homepage extends Fragment implements View.OnClickListener {
 //            mGridView.setAdapter(new MyBaseAdapter());
         }
     }
+
+
+
     public  void initsView(){
         dom_search_Lin = view.findViewById(R.id.home_searchdetail_Lin);
         spec_search_Lin=view.findViewById(R.id.home_spec_searchdetail_Lin); //搜索栏
@@ -93,6 +158,7 @@ public class homepage extends Fragment implements View.OnClickListener {
    public void initEvent(){
         button_dom.setOnClickListener(this);   //搜索栏点击事件初始化
         button_spec.setOnClickListener(this);
+
    }
 
     @Override
@@ -166,7 +232,7 @@ public class homepage extends Fragment implements View.OnClickListener {
 
         @Override
         public int getCount() {
-            return details.length;
+            return icons.length;
         }
 
         @Override
@@ -181,7 +247,6 @@ public class homepage extends Fragment implements View.OnClickListener {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
             convertView = View.inflate(getActivity(),R.layout.home_listitem,null);
 
             TextView list_price = convertView.findViewById(R.id.home_list_price);
@@ -191,11 +256,21 @@ public class homepage extends Fragment implements View.OnClickListener {
             list_price.setText(prices[position]);
             list_icon.setImageResource(icons[position]);
 
+                System.out.println("adaa"+datalist.size());
+//            list_detail.setText(datalist.get(position).name);
+//            list_price.setText("￥"+datalist.get(position).detail);
+//            Bitmap bmp = BitmapFactory.decodeFile("/sdcard/Pictures/WeiXin/mmexport1617935893481.jpg");
+//            list_icon.setImageBitmap(bmp);
+
             return convertView;
         }
     }
 
-
+public  static  class Testinfo{
+        String name;
+        int price;
+        String detail;
+}
 
 
 
