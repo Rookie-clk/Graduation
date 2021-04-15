@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".wbo"></activity>
+        <activity android:name=".regist"></activity>
+        <activity android:name=".login" />
+        <activity android:name=".wbo" />
         <activity android:name=".searchresult" />
         <activity android:name=".favorite" />
         <activity android:name=".order" />

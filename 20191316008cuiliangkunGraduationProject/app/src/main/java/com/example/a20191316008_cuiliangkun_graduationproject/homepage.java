@@ -59,12 +59,7 @@ public class homepage extends Fragment implements View.OnClickListener  {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_homepage,container,false);
-        sql();
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
 
         if (view!=null){
             initView();
@@ -90,48 +85,7 @@ public class homepage extends Fragment implements View.OnClickListener  {
 
         return view;
     }
-    private static void sql() {
-        new Thread(new Runnable() {
-            @Override
-            public synchronized void run() {
-                try {
-                    //第一步  寻找这个驱动，JVM加入内存
-                    Class.forName("com.mysql.jdbc.Driver");
-                    System.out.println("ClassforName成功");
-                    //第二步  通过connection数据库建立链接对象
-                    java.sql.Connection cn = DriverManager.getConnection("jdbc:mysql://192.168.1.133:3306/testdb","root","123456");
-                    System.out.println("Connection连接数据库成功");
-                    //第三步 通过cn链接对象 创建一个statement对象，操作对象
-                    Statement st =cn.createStatement();
-                    //第四步 写一个SQL语句
-                    String sql = "select * from test";
-                    //第五步 执行SQL语句，返回结果集到rs对象
-                    //statement类的executeQuery()方法来下达select指令以查询数据库
-                    ResultSet rs=st.executeQuery(sql);
 
-                    //第六步 返回结果集得到字符串，某一列
-
-                    while (rs.next()){
-                        Testinfo testinfo = new Testinfo();
-                        testinfo.name=rs.getString("name");
-                        testinfo.detail = rs.getString("sex");
-                        testinfo.price = rs.getInt("age");
-                        datalist.add(testinfo);
-//                        System.out.println(datalist.size());
-                    }
-                    //class 异常
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                    System.out.println("ClassforName失败");
-                    //Connection 异常
-                }  catch (SQLException e) {
-                    e.printStackTrace();
-                    System.out.println("Connection连接数据库失败");
-                }
-            }
-        }).start();
-
-    }
 
 
 
@@ -256,7 +210,7 @@ public class homepage extends Fragment implements View.OnClickListener  {
             list_price.setText(prices[position]);
             list_icon.setImageResource(icons[position]);
 
-                System.out.println("adaa"+datalist.size());
+//                System.out.println("adaa"+datalist.size());
 //            list_detail.setText(datalist.get(position).name);
 //            list_price.setText("￥"+datalist.get(position).detail);
 //            Bitmap bmp = BitmapFactory.decodeFile("/sdcard/Pictures/WeiXin/mmexport1617935893481.jpg");

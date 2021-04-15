@@ -27,7 +27,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(create_userinfo);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     }
     //注册成功进行数据的插入
-    public void insertUser(String username,String pwd,String avartor){
+    public void insertUser(String username,String pwd,byte[] avartor){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();
         values.put("uname",username);
@@ -55,5 +55,24 @@ public class UserDBHelper extends SQLiteOpenHelper {
         db.close();
         return false;
     }
-
+//判断是否登录成功
+    public boolean UserLogin(String username,String password){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor=db.query("UserInfo",null,"uname=?",new String[]{username},null,null,null);
+        cursor.moveToFirst();
+        if(password.equals(cursor.getString(2))){
+            return true;
+        }
+        db.close();
+        return false;
+    }
+    //返回用户的头像
+    public byte[] UserAvartor(String username){
+        byte[] avartor;
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.query("UserInfo",null,"uname=?",new String[]{username},null,null,null);
+        avartor = cursor.getBlob(3);
+        db.close();
+        return avartor;
+    }
 }
