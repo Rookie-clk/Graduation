@@ -70,12 +70,13 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                     editor.putString("账号",account);
                     editor.putString("密码",password);
                     editor.commit();
+
                     Toast.makeText(login.this,"登录成功！",Toast.LENGTH_LONG).show();
-//                    Intent toUserpage = new Intent(login.this,MainActivity.class);
-//                    Bundle bundle = new Bundle();
-////                bundle.putInt("hotelid",userid);
-//                    toUserpage.putExtras(bundle);                   //传输给hotelpage的id，并跳转
-//                    login.this.startActivity(toUserpage);
+                    Intent toUserpage = new Intent(login.this,MainActivity.class);
+                    Bundle bundle = new Bundle();
+//                bundle.putInt("hotelid",userid);
+                    toUserpage.putExtras(bundle);                   //传输给hotelpage的id，并跳转
+                    login.this.startActivity(toUserpage);
                 }
 
 

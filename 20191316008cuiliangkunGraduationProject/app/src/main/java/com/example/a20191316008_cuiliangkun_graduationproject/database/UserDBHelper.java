@@ -71,8 +71,19 @@ public class UserDBHelper extends SQLiteOpenHelper {
         byte[] avartor;
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.query("UserInfo",null,"uname=?",new String[]{username},null,null,null);
+        cursor.moveToFirst();
         avartor = cursor.getBlob(3);
         db.close();
         return avartor;
+    }
+    //返回用户的id
+    public int UserID(String username){
+        int id;
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.query("UserInfo",null,"uname=?",new String[]{username},null,null,null);
+        cursor.moveToFirst();
+        id = cursor.getInt(0);
+        db.close();
+        return id;
     }
 }

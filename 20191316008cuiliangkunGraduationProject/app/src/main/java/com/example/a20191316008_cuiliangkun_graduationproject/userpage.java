@@ -32,6 +32,8 @@ public class userpage extends Fragment implements View.OnClickListener {
     private Button owner;
     private TextView txt1;
     private TextView txt2;
+    private ImageView arrow;
+    private Button logoutbtn;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
 
@@ -50,6 +52,7 @@ public class userpage extends Fragment implements View.OnClickListener {
         favorite.setOnClickListener(this);
         info.setOnClickListener(this);
         owner.setOnClickListener(this);
+        logoutbtn.setOnClickListener(this);
     }
 
     private void initView() {
@@ -60,18 +63,26 @@ public class userpage extends Fragment implements View.OnClickListener {
         owner = view.findViewById(R.id.userpage_wantbeowner);
         txt1 = view.findViewById(R.id.userpage_logintxt);
         txt2 = view.findViewById(R.id.userpage_logintxt2);
+        arrow = view.findViewById(R.id.userpage_arrow);
+        logoutbtn = view.findViewById(R.id.userpage_logout);
 
         sp = getActivity().getSharedPreferences("data",MODE_PRIVATE);
         editor=sp.edit();
-        if(sp.getString("账号","")!=null) {
+        if(sp.getString("账号","") !="") {
             txt1.setText(sp.getString("账号", ""));
             txt2.setText("");
+            arrow.setVisibility(view.INVISIBLE);
+            loginbtn.setEnabled(false);
+            logoutbtn.setVisibility(View.VISIBLE);
+
             UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
-            Toast.makeText(getActivity(),sp.getString("账号", ""),Toast.LENGTH_LONG).show();
-//            byte[] avartarByte = userDBHelper.UserAvartor(sp.getString("账号", ""));
-//            Bitmap avartarBitmap = getPicFromBytes(avartarByte);
-//            avartarBitmap = zoomBitmap(avartarBitmap,100,100);
-//            avatar.setImageBitmap(avartarBitmap);
+            byte[] avartarByte = userDBHelper.UserAvartor(sp.getString("账号", ""));
+            Bitmap avartarBitmap = getPicFromBytes(avartarByte);
+            avartarBitmap = zoomBitmap(avartarBitmap,100,100);
+            avatar.setImageBitmap(avartarBitmap);
+
+
+
         }
     }
     public static Bitmap getPicFromBytes(byte[] bytes) {
@@ -113,12 +124,44 @@ public class userpage extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.userpage_wantbeowner:
+                int userid_wbo;
+                UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
+                userid_wbo = userDBHelper.UserID(sp.getString("账号", ""));
 
                 Intent wbointent = new Intent(getActivity(),wbo.class);
                 Bundle wbobundle = new Bundle();
-                wbobundle.putInt("hotelid",1);
+                wbobundle.putInt("userid",userid_wbo);
                 wbointent.putExtras(wbobundle);
                 getActivity().startActivity(wbointent);
+                break;
+            case R.id.userpage_logout:
+                final commondialog commondialog = new commondialog(getActivity());
+                commondialog.setTitle("提示")
+                        .setMessage("您确定要登出吗？")
+                        .setPositive("确定")
+                        .setNegative("取消")
+                        .setOnClickButtonListener(new commondialog.OnclickButtonListener() {
+                            @Override
+                            public void onPositiveClick() {
+                                editor.putString("账号","");
+                                editor.putString("密码","");
+                                editor.commit();
+                                txt1.setText("登录/注册");
+                                txt2.setText("登录享更多特权");
+                                avatar.setImageResource(R.drawable.head);
+                                arrow.setVisibility(view.VISIBLE);
+                                loginbtn.setEnabled(true);
+                                logoutbtn.setVisibility(View.INVISIBLE);
+
+                                commondialog.dismiss();
+                            }
+
+                            @Override
+                            public void onNegativeClick() {
+                                commondialog.dismiss();
+                            }
+                        });
+                commondialog.show();
                 break;
         }
     }

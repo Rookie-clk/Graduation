@@ -51,6 +51,13 @@ public class wbo extends AppCompatActivity implements CompoundButton.OnCheckedCh
         setContentView(R.layout.activity_wbo);
         init();
         initEvent();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        int hotelid = bundle.getInt("userid");   //取得主页传输的hotelid
+//        if(hotelid == 4){
+//            Toast.makeText(wbo.this,"111111",Toast.LENGTH_LONG).show();
+//        }
+
     }
 
     private void initEvent() {
