@@ -89,8 +89,8 @@ public class userpage extends Fragment implements View.OnClickListener {
         if (bytes != null)
                 return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
         return null;
-
     }
+
     public static Bitmap zoomBitmap(Bitmap bitmap, int w, int h){
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -124,6 +124,10 @@ public class userpage extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.userpage_wantbeowner:
+                if(sp.getString("账号", "")==""){
+                    Toast.makeText(getActivity(),"请先登录！",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 int userid_wbo;
                 UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
                 userid_wbo = userDBHelper.UserID(sp.getString("账号", ""));

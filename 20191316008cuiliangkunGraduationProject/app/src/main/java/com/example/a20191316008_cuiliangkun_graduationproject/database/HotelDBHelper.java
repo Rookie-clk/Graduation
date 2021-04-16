@@ -20,14 +20,14 @@ public class HotelDBHelper extends SQLiteOpenHelper {
             "hname varchar(30) not null," +
             "hprice varchar(20) not null," +
             "hregion varchar(30) not null," +
-            "haddress varchar(30) not null," +
+            "haddress varchar(100) not null," +
             "htype varchar(30) not null," +
             "hhuxing varchar(30) not null," +
             "hsquare interger not null," +
             "hstyle varchar(30) not null," +
             "himage BLOB not null," +
-            "hcequip varchar(30) not null," +
-            "hlequip varchar(30) not null," +
+            "hcequip varchar(300) not null," +
+            "hlequip varchar(300) not null," +
             "uid integer not null)" ;
 
     public HotelDBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
@@ -37,7 +37,7 @@ public class HotelDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        db.execSQL(create_HotelInfo);
     }
 
     @Override
