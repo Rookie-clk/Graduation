@@ -79,7 +79,7 @@ public class HotelDBHelper extends SQLiteOpenHelper {
         List<Hotel> list=new ArrayList<Hotel>();
         SQLiteDatabase db=this.getWritableDatabase();
         Cursor cursor=db.query("HotelInfo",null,null,null,null,null,"hid desc");
-        for (int i = 0; i<5; i++){      //取前五条记录
+//        for (int i = 0; i<5; i++){      //取前五条记录
             while(cursor.moveToNext()){
                 Hotel ho=new Hotel();
                 ho.setId(cursor.getInt(0));
@@ -97,7 +97,7 @@ public class HotelDBHelper extends SQLiteOpenHelper {
                 ho.setUid(cursor.getInt(12));
                 list.add(ho);
             }
-        }
+//        }
         cursor.close();
         return list;
     }

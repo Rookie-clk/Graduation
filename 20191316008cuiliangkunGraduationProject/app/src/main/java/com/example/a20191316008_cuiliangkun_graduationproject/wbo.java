@@ -304,13 +304,10 @@ public class wbo extends AppCompatActivity implements CompoundButton.OnCheckedCh
                 hotelDBHelper.insertHotel(sname,sprice,region,saddress,sleixing,sshi+","+sting,smianji,sfengge,bytes,basic,tiexinsheshi,userid);
 
                 Toast.makeText(wbo.this,"发布成功！",Toast.LENGTH_LONG).show();
-                Toast.makeText(wbo.this,tiexinsheshi,Toast.LENGTH_LONG).show();
-                Toast.makeText(wbo.this,basic,Toast.LENGTH_LONG).show();
-//                Intent submit = new Intent(wbo.this,userpage.class);
-//                Bundle submitbundle = new Bundle();
-//                submitbundle.putInt("hotelid",1);
-//                submit.putExtras(submitbundle);
-//                wbo.this.startActivity(submit);
+
+
+                Intent submit = new Intent(wbo.this,MainActivity.class);
+                wbo.this.startActivity(submit);
 
             }
         });

@@ -3,6 +3,7 @@ package com.example.a20191316008_cuiliangkun_graduationproject;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.a20191316008_cuiliangkun_graduationproject.bean.Hotel;
+import com.example.a20191316008_cuiliangkun_graduationproject.database.HotelDBHelper;
 
 import java.io.File;
 import java.io.InputStream;
@@ -52,14 +57,17 @@ public class homepage extends Fragment implements View.OnClickListener  {
     private Button button_spec;
     private dom_search_frag dom_search_frag;
     private spec_search_frag spec_search_frag;
-    public static List<Testinfo> datalist= new ArrayList<>();
-//    List<String> datalist= new ArrayList<>();
+    private List<Hotel> hotelList;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.activity_homepage,container,false);
-
+//        hotelDBHelper.deleteHotel("1");
+        HotelDBHelper hotelDBHelper = new HotelDBHelper(getActivity(),"hotelinfo",null,1);
+        hotelList = hotelDBHelper.findAllHotel();
 
         if (view!=null){
             initView();
@@ -90,14 +98,14 @@ public class homepage extends Fragment implements View.OnClickListener  {
 
 
     private void initView() {
-//        mGridView = (GridView) view.findViewById(R.id.home_list1);
+
         mlistView1 = (ListView) view.findViewById(R.id.home_list1);
-//        mlistView2 = (ListView) view.findViewById(R.id.home_list2);
+
         if (icons != null) {                                      //页面加载时，就要放置adapter来显示菜单
             mlistView1.setAdapter(new MyBaseAdapter());
-//            mlistView2.setAdapter(new MyBaseAdapter());
-//            mGridView.setAdapter(new MyBaseAdapter());
+
         }
+        setListViewHeightBasedOnChildren(mlistView1);
     }
 
 
@@ -186,12 +194,12 @@ public class homepage extends Fragment implements View.OnClickListener  {
 
         @Override
         public int getCount() {
-            return icons.length;
+            return hotelList.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return icons[position];
+            return hotelList.get(position);
         }
 
         @Override
@@ -202,29 +210,69 @@ public class homepage extends Fragment implements View.OnClickListener  {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = View.inflate(getActivity(),R.layout.home_listitem,null);
-
             TextView list_price = convertView.findViewById(R.id.home_list_price);
             TextView list_detail = convertView.findViewById(R.id.home_list_detail);
             ImageView list_icon = convertView.findViewById(R.id.home_list_itemicon);
-            list_detail.setText(details[position]);
-            list_price.setText(prices[position]);
-            list_icon.setImageResource(icons[position]);
+            TextView list_name = convertView.findViewById(R.id.home_list_name);
+            Hotel temHotel = hotelList.get(position);//获取当前位置
+//            list_detail.setText(details[position]);
+            list_name.setText(temHotel.getName());
 
-//                System.out.println("adaa"+datalist.size());
-//            list_detail.setText(datalist.get(position).name);
-//            list_price.setText("￥"+datalist.get(position).detail);
-//            Bitmap bmp = BitmapFactory.decodeFile("/sdcard/Pictures/WeiXin/mmexport1617935893481.jpg");
-//            list_icon.setImageBitmap(bmp);
+            String temHuxing[] = temHotel.getHuxing().split(",");
+            String temDetail = temHotel.getType()+"·"+temHuxing[0]+"室"+temHuxing[1]+"厅"+"·"+temHotel.getStyle();    //设置简要细节
+            System.out.println(temDetail);
+            list_detail.setText(temDetail);
+
+            list_price.setText(temHotel.getPrice());
+
+            byte[] ImageByte = temHotel.getPicture();
+            Bitmap ImageBitmap = getPicFromBytes(ImageByte);            //设置图片
+            ImageBitmap = zoomBitmap(ImageBitmap,1000,600);
+            list_icon.setImageBitmap(ImageBitmap);
+
+//            list_icon.setImageResource(icons[position]);
+
 
             return convertView;
         }
     }
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            return;
+        }
 
-public  static  class Testinfo{
-        String name;
-        int price;
-        String detail;
-}
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);  // 获取item高度
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        // 最后再加上分割线的高度和padding高度，否则显示不完整。
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1))+listView.getPaddingTop()+listView.getPaddingBottom();
+        listView.setLayoutParams(params);
+    }
+
+    public static Bitmap getPicFromBytes(byte[] bytes) {
+        if (bytes != null)
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        return null;
+    }
+
+    public static Bitmap zoomBitmap(Bitmap bitmap, int w, int h){
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Matrix matrix = new Matrix();
+        float scaleWidth = ((float) w / width);
+        float scaleHeight = ((float) h / height);
+        matrix.postScale(scaleWidth, scaleHeight);
+        Bitmap newBmp = Bitmap.createBitmap(bitmap, 0, 0, width, height,
+                matrix, true);
+        return newBmp;
+    }
+
 
 
 

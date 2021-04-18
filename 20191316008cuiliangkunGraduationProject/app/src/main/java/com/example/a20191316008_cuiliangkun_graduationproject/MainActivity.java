@@ -23,6 +23,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.a20191316008_cuiliangkun_graduationproject.bean.Hotel;
+import com.example.a20191316008_cuiliangkun_graduationproject.database.HotelDBHelper;
+
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 //    private int[] icons = {R.drawable.beach,R.drawable.cyber,R.drawable.pool};
@@ -182,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
     //声明四个Tab的布局文件
     private LinearLayout mTab1;
     private LinearLayout mTab2;
@@ -256,6 +262,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //进行选中Tab的处理
     private void selectTab(int i) {
+
         //获取FragmentManager对象
         FragmentManager manager = getSupportFragmentManager();
         //获取FragmentTransaction对象
