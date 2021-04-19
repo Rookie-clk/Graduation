@@ -49,6 +49,7 @@ public class regist extends AppCompatActivity implements View.OnClickListener {
         registbtn.setOnClickListener(this);
         loginbtn.setOnClickListener(this);
         avartor.setOnClickListener(this);
+
     }
 
     private void init() {
@@ -83,13 +84,17 @@ public class regist extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(regist.this,"两次输入的密码不一致！",Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 UserDBHelper userDBHelper = new UserDBHelper(this,"userinfo",null,1);
+                if(userDBHelper.findThisUser(account)){
+                    Toast.makeText(regist.this,"用户名已被使用！",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 BitmapDrawable bd=(BitmapDrawable)avartor.getDrawable();   //把图片转成bitmap格式
                 Bitmap bitmap=bd.getBitmap();
                 ByteArrayOutputStream os=new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,os);  //图片进行压缩
                 byte[] bytes=os.toByteArray();  //把输出流转成二进制数组
-//                cd.insertCommodity(cname,cprice,ctype,cdescribe,cphone,bytes,ud.uid);
                 userDBHelper.insertUser(account,password,bytes); //添加用户信息到数据表
                 Toast.makeText(regist.this, "注册成功", Toast.LENGTH_SHORT).show();
 //                startActivity(new Intent(regist.this,login.class));

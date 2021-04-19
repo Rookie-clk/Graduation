@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a20191316008_cuiliangkun_graduationproject.database.HotelDBHelper;
+import com.example.a20191316008_cuiliangkun_graduationproject.database.UserDBHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -303,8 +304,10 @@ public class wbo extends AppCompatActivity implements CompoundButton.OnCheckedCh
                 HotelDBHelper hotelDBHelper = new HotelDBHelper(wbo.this,"hotelinfo",null,1);
                 hotelDBHelper.insertHotel(sname,sprice,region,saddress,sleixing,sshi+","+sting,smianji,sfengge,bytes,basic,tiexinsheshi,userid);
 
-                Toast.makeText(wbo.this,"发布成功！",Toast.LENGTH_LONG).show();
+                UserDBHelper userDBHelper = new UserDBHelper(wbo.this,"userinfo",null,1);
+                userDBHelper.ChangeToOwner(userid+"");      //标记发布人为房东
 
+                Toast.makeText(wbo.this,"发布成功！",Toast.LENGTH_LONG).show();
 
                 Intent submit = new Intent(wbo.this,MainActivity.class);
                 wbo.this.startActivity(submit);

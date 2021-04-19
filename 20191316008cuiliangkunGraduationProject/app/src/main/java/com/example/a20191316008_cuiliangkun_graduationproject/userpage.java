@@ -34,6 +34,7 @@ public class userpage extends Fragment implements View.OnClickListener {
     private TextView txt2;
     private ImageView arrow;
     private Button logoutbtn;
+    private Button manage;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
 
@@ -41,7 +42,6 @@ public class userpage extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_userpage,container,false);
-
         initView();
         initEvent();
         return view;
@@ -53,6 +53,7 @@ public class userpage extends Fragment implements View.OnClickListener {
         info.setOnClickListener(this);
         owner.setOnClickListener(this);
         logoutbtn.setOnClickListener(this);
+        manage.setOnClickListener(this);
     }
 
     private void initView() {
@@ -65,22 +66,28 @@ public class userpage extends Fragment implements View.OnClickListener {
         txt2 = view.findViewById(R.id.userpage_logintxt2);
         arrow = view.findViewById(R.id.userpage_arrow);
         logoutbtn = view.findViewById(R.id.userpage_logout);
+        manage = view.findViewById(R.id.userpage_manageMyHotel);
 
         sp = getActivity().getSharedPreferences("data",MODE_PRIVATE);
         editor=sp.edit();
-        if(sp.getString("账号","") !="") {
+        if(sp.getString("账号","") !="") {            //登陆成功
             txt1.setText(sp.getString("账号", ""));
             txt2.setText("");
             arrow.setVisibility(view.INVISIBLE);
-            loginbtn.setEnabled(false);
+            loginbtn.setEnabled(false);                 //设置用户信息以及将登陆按钮设为不可点击
             logoutbtn.setVisibility(View.VISIBLE);
 
+
             UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
-            byte[] avartarByte = userDBHelper.UserAvartor(sp.getString("账号", ""));
+            byte[] avartarByte = userDBHelper.UserAvartor(sp.getString("账号", ""));          //设置用户界面的头像
             Bitmap avartarBitmap = getPicFromBytes(avartarByte);
             avartarBitmap = zoomBitmap(avartarBitmap,100,100);
             avatar.setImageBitmap(avartarBitmap);
 
+            if(userDBHelper.IsOwner(sp.getString("账号",""))){
+                owner.setVisibility(View.INVISIBLE);
+                manage.setVisibility(View.VISIBLE);
+            }
 
 
         }
@@ -156,7 +163,8 @@ public class userpage extends Fragment implements View.OnClickListener {
                                 arrow.setVisibility(view.VISIBLE);
                                 loginbtn.setEnabled(true);
                                 logoutbtn.setVisibility(View.INVISIBLE);
-
+                                manage.setVisibility(View.INVISIBLE);
+                                owner.setVisibility(View.VISIBLE);
                                 commondialog.dismiss();
                             }
 

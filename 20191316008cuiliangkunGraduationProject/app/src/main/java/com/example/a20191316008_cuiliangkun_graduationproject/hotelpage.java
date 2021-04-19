@@ -32,8 +32,9 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_hotelpage);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        int hotelid = bundle.getInt("hotelid");   //取得主页传输的hotelid
+        String hotelname = bundle.getString("hotelname");   //取得主页传输的hotelname
 
+        Toast.makeText(hotelpage.this,hotelname,Toast.LENGTH_LONG).show();
 
         btn_back = findViewById(R.id.hotelpage_back);
         btn_love = findViewById(R.id.hotelpage_love);

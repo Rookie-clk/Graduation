@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -39,6 +40,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class homepage extends Fragment implements View.OnClickListener  {
     private int[] icons = {R.drawable.beach,R.drawable.cyber,R.drawable.pool};
@@ -78,18 +80,7 @@ public class homepage extends Fragment implements View.OnClickListener  {
         initEvent();
         selectTab(0);
 
-        mlistView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //listview点击事件
 
-                        Intent intent = new Intent(getActivity(),hotelpage.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("hotelid",position);
-                        intent.putExtras(bundle);                   //传输给hotelpage的id，并跳转
-                        getActivity().startActivity(intent);
-
-            }
-        });
 
         return view;
     }
@@ -105,6 +96,21 @@ public class homepage extends Fragment implements View.OnClickListener  {
             mlistView1.setAdapter(new MyBaseAdapter());
 
         }
+        mlistView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //listview点击事件
+
+                Intent intent = new Intent(getActivity(),hotelpage.class);
+                Bundle bundle = new Bundle();
+                Hotel intentHotel = new Hotel();
+                Adapter adapter=parent.getAdapter();
+                intentHotel = (Hotel)adapter.getItem(position);
+                bundle.putString("hotelname",intentHotel.getName());
+                intent.putExtras(bundle);                   //传输给hotelpage的id，并跳转
+                getActivity().startActivity(intent);
+
+            }
+        });
         setListViewHeightBasedOnChildren(mlistView1);
     }
 
@@ -220,7 +226,6 @@ public class homepage extends Fragment implements View.OnClickListener  {
 
             String temHuxing[] = temHotel.getHuxing().split(",");
             String temDetail = temHotel.getType()+"·"+temHuxing[0]+"室"+temHuxing[1]+"厅"+"·"+temHotel.getStyle();    //设置简要细节
-            System.out.println(temDetail);
             list_detail.setText(temDetail);
 
             list_price.setText(temHotel.getPrice());
@@ -236,7 +241,7 @@ public class homepage extends Fragment implements View.OnClickListener  {
             return convertView;
         }
     }
-    public void setListViewHeightBasedOnChildren(ListView listView) {
+    public void setListViewHeightBasedOnChildren(ListView listView) {       //动态设置listview高度
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             return;

@@ -86,4 +86,24 @@ public class UserDBHelper extends SQLiteOpenHelper {
         db.close();
         return id;
     }
+
+    //判断用户是否为房东
+    public boolean IsOwner(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor=db.query("UserInfo",null,"uname=?",new String[]{username},null,null,null);
+        cursor.moveToFirst();
+        if(cursor.getInt(4) == 1){
+            return true;
+        }
+        return false;
+    }
+
+    //将用户设置为房东
+    public void ChangeToOwner(String userid){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("isowner",true);
+        db.update("UserInfo",values,"uid=?",new String[]{userid});
+        db.close();
+    }
 }

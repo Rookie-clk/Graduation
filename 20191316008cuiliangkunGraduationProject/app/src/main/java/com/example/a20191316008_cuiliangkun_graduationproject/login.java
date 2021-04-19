@@ -59,8 +59,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                     return;
                 }
 
-
-
                 UserDBHelper userDBHelper = new UserDBHelper(this,"userinfo",null,1);
                 if(!userDBHelper.findThisUser(account)){
                     Toast.makeText(login.this,"未找到该用户！",Toast.LENGTH_LONG).show();
@@ -74,7 +72,6 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(login.this,"登录成功！",Toast.LENGTH_LONG).show();
                     Intent toUserpage = new Intent(login.this,MainActivity.class);
                     Bundle bundle = new Bundle();
-//                bundle.putInt("hotelid",userid);
                     toUserpage.putExtras(bundle);                   //传输给hotelpage的id，并跳转
                     login.this.startActivity(toUserpage);
                 }
