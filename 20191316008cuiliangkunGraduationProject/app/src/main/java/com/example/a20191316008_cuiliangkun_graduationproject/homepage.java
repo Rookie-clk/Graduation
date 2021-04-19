@@ -92,10 +92,10 @@ public class homepage extends Fragment implements View.OnClickListener  {
 
         mlistView1 = (ListView) view.findViewById(R.id.home_list1);
 
-        if (icons != null) {                                      //页面加载时，就要放置adapter来显示菜单
+                                         //页面加载时，就要放置adapter来显示菜单
             mlistView1.setAdapter(new MyBaseAdapter());
 
-        }
+
         mlistView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {          //listview点击事件
