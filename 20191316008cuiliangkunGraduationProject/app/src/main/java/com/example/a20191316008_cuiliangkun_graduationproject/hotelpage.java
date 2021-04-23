@@ -61,7 +61,9 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
     private List<Hotel> hotelList;
     private Hotel tmp;
     private List<Hotel> myHotel;
+    private TextView price;
     private TextView address;
+    private Button btn_yuding;
     String intenthotelname;
     HotelDBHelper hotelDBHelper = new HotelDBHelper(hotelpage.this,"hotelinfo",null,1);
 
@@ -83,7 +85,6 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
     }
 
     private void show() {
-
         byte[] ImageByte = tmp.getPicture();
         Bitmap ImageBitmap = getPicFromBytes(ImageByte);            //设置图片
         ImageBitmap = zoomBitmap(ImageBitmap,1000,600);
@@ -95,6 +96,7 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         huxing.setText(temDetail);
         fengge.setText(tmp.getStyle());
         address.setText(tmp.getAddress());
+        price.setText(tmp.getPrice());
         jichusheshi.setText(tmp.getCequip());
         aixinsheshi.setText(tmp.getLequip());
         otherlist.setAdapter(new otherAdapter());
@@ -208,16 +210,18 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         detail = findViewById(R.id.hotelpage_pinglun);
         btn_quanbupinglun = findViewById(R.id.hotelpage_btn_quanbupinglun);
         address = findViewById(R.id.hotelpage_address);
+        price = findViewById(R.id.hotelpage_price);
 
         btn_back = findViewById(R.id.hotelpage_back);
         btn_love = findViewById(R.id.hotelpage_love);
+        btn_yuding = findViewById(R.id.hotelpage_yuding);
     }
 
     private void initEvent() {
         btn_back.setOnClickListener(this);
         btn_love.setOnClickListener(this);
         btn_quanbupinglun.setOnClickListener(this);
-
+        btn_yuding.setOnClickListener(this);
     }
 
     @Override
@@ -240,6 +244,13 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
                 break;
 
             case R.id.hotelpage_btn_quanbupinglun:
+                break;
+            case R.id.hotelpage_yuding:
+                Intent intent = new Intent(hotelpage.this,yuding.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("hotelname",intenthotelname);
+                intent.putExtras(bundle);                   //传输给hotelpage的name，并跳转
+                hotelpage.this.startActivity(intent);
                 break;
         }
     }

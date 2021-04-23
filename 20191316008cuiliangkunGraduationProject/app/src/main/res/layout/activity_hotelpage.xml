@@ -119,58 +119,7 @@
 
 
         </LinearLayout>
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:background="#F5F5F5"-->
-<!--            android:padding="5dp"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            >-->
-<!--            <TextView-->
-<!--                android:id="@+id/hotelpage_score"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="4.8"-->
-<!--                android:textSize="25sp"-->
-<!--                android:textColor="	#1E90FF"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginLeft="5dp"-->
-<!--                ></TextView>-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="/5.0"-->
-<!--                android:textSize="15sp"-->
-<!--                android:textColor="	#000"-->
-<!--                android:textStyle="bold"-->
-<!--                android:layout_marginLeft="0dp"-->
-<!--                ></TextView>-->
-<!--            <TextView-->
-<!--                android:id="@+id/hotelpage_pingjia"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="超赞"-->
-<!--                android:textSize="20sp"-->
-<!--                android:layout_marginLeft="5dp"-->
-<!--                android:textColor="#000"-->
-<!--                android:textStyle="bold"-->
-<!--                ></TextView>-->
-<!--            <Button-->
-<!--                android:id="@+id/hotelpage_chakandianping"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="#00000000"-->
-<!--                android:textColor="#1E90FF"-->
-<!--                android:textStyle="bold"-->
-<!--                android:text="查看点评>"-->
-<!--                android:textSize="15sp"-->
-<!--                android:layout_marginLeft="140dp"-->
 
-<!--                ></Button>-->
-
-<!--        </LinearLayout>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -566,6 +515,45 @@
                     android:textColor="#1E90FF"
                     android:layout_margin="5dp"
                     android:background="#00000000"
+                    android:textStyle="bold"
+                    ></Button>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/hotelpage_price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="￥123"
+                    android:textColor="#1E90FF"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:gravity="right"
+                    ></TextView>
+                <TextView
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="/晚"
+                android:textColor="#1E90FF"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                ></TextView>
+                <Button
+                    android:id="@+id/hotelpage_yuding"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="#1E90FF"
+                    android:text="预订当前房源"
+                    android:textColor="#ffffff"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     ></Button>
             </LinearLayout>

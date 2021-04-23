@@ -234,10 +234,6 @@ public class homepage extends Fragment implements View.OnClickListener  {
             Bitmap ImageBitmap = getPicFromBytes(ImageByte);            //设置图片
             ImageBitmap = zoomBitmap(ImageBitmap,1000,600);
             list_icon.setImageBitmap(ImageBitmap);
-
-//            list_icon.setImageResource(icons[position]);
-
-
             return convertView;
         }
     }

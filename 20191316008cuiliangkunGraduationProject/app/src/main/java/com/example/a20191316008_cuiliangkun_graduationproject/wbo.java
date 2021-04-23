@@ -123,12 +123,7 @@ public class wbo extends AppCompatActivity implements CompoundButton.OnCheckedCh
                                 selected = which;
                             }
                         })
-//                       .setMultiChoiceItems(items, check, new DialogInterface.OnMultiChoiceClickListener() {
-//                           @Override
-//                           public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-//                               check[which]=isChecked;
-//                           }
-//                       })
+
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

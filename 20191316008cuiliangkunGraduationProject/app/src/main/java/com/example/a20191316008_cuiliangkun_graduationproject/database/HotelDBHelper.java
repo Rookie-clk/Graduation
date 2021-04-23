@@ -176,7 +176,30 @@ public class HotelDBHelper extends SQLiteOpenHelper {
         cursor.close();
         return list;
     }
+    //根据id查找民宿
+    public Hotel findHotelByid(String id){
 
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.query("HotelInfo",null,"hid=?",new String[]{id},null,null,null);
+        cursor.moveToFirst();
+            Hotel ho=new Hotel();
+            ho.setId(cursor.getInt(0));
+            ho.setName(cursor.getString(1));
+            ho.setPrice(cursor.getString(2));
+            ho.setRegion(cursor.getString(3));
+            ho.setAddress(cursor.getString(4));
+            ho.setType(cursor.getString(5));
+            ho.setHuxing(cursor.getString(6));
+            ho.setSquare(cursor.getInt(7));
+            ho.setStyle(cursor.getString(8));
+            ho.setPicture(cursor.getBlob(9));
+            ho.setCequip(cursor.getString(10));
+            ho.setLequip(cursor.getString(11));
+            ho.setUid(cursor.getInt(12));
+
+        cursor.close();
+        return ho;
+    }
     public boolean deleteHotel(String id){
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete("HotelInfo","hid=?",new String[]{id})>0;
