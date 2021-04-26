@@ -19,7 +19,8 @@ public class UserDBHelper extends SQLiteOpenHelper {
             "uname varchar(12) not null," +
             "upwd varchar(20) not null," +
             "uavartor BLOB not null," +
-            "isowner boolean not null)" ;
+            "isowner boolean not null,"+
+            "isadmin boolean not null)";
 
     public UserDBHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -42,6 +43,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
         values.put("upwd",pwd);
         values.put("uavartor",avartor);
         values.put("isowner",false);
+        values.put("isadmin",false);
         db.insert("UserInfo",null,values);
         db.close();
     }
@@ -93,6 +95,16 @@ public class UserDBHelper extends SQLiteOpenHelper {
         Cursor cursor=db.query("UserInfo",null,"uname=?",new String[]{username},null,null,null);
         cursor.moveToFirst();
         if(cursor.getInt(4) == 1){
+            return true;
+        }
+        return false;
+    }
+    //判断用户是否为管理员
+    public boolean IsAdmin(String username){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor=db.query("UserInfo",null,"uname=?",new String[]{username},null,null,null);
+        cursor.moveToFirst();
+        if(cursor.getInt(5) == 1){
             return true;
         }
         return false;

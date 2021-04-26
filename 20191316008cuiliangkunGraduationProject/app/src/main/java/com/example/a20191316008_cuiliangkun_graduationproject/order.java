@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -29,11 +30,15 @@ import com.example.a20191316008_cuiliangkun_graduationproject.database.UserDBHel
 
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class order extends Fragment {
     private ListView order;
     private ImageView img;
     public View view;
     private List<Order> Allorder;
+    SharedPreferences sp;
+    SharedPreferences.Editor editor;
 
 
     @Nullable
@@ -50,10 +55,15 @@ public class order extends Fragment {
     private void getData() {
 
         OrderDBHelper orderDBHelper = new OrderDBHelper(getActivity(),"orderinfo",null,1);
-        if (orderDBHelper.findOrder()){
-            Allorder = orderDBHelper.findAllOrder();
+        UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
+        sp = getActivity().getSharedPreferences("data",MODE_PRIVATE);
+        editor=sp.edit();
+        int userid = userDBHelper.UserID(sp.getString("账号", ""));
+
+        if (orderDBHelper.ExistMyOrder(userid+"")){
+            Allorder = orderDBHelper.findMyOrder(userid+"");
             OrderAdapter orderAdapter = new OrderAdapter();
-            orderAdapter.notifyDataSetChanged();
+
             order.setAdapter(orderAdapter);
 
         }else{
@@ -106,9 +116,9 @@ public class order extends Fragment {
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = View.inflate(getActivity(),R.layout.order_item,null);
             UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
-            HotelDBHelper hotelDBHelper = new HotelDBHelper(getActivity(),"hotelinfo",null,1);
+            final HotelDBHelper hotelDBHelper = new HotelDBHelper(getActivity(),"hotelinfo",null,1);
 
-            TextView hotelname  = convertView.findViewById(R.id.orderitem_hotelname);
+            final TextView hotelname  = convertView.findViewById(R.id.orderitem_hotelname);
             TextView hotelprice = convertView.findViewById(R.id.orderitem_hotelprice);
             TextView shenfenzheng = convertView.findViewById(R.id.orderitem_shenfenzheng);
             TextView phonenumber = convertView.findViewById(R.id.orderitem_phonenumber);
@@ -158,7 +168,11 @@ public class order extends Fragment {
                                         if(!orderDBHelper.findOrder()){
                                             img.setVisibility(View.VISIBLE);
                                         }else{
-
+                                            Intent toUserPage = new Intent(getActivity(),MainActivity.class);
+                                            Bundle tab = new Bundle();
+                                            tab.putString("tab","1");
+                                            toUserPage.putExtras(tab);
+                                           getActivity().startActivity(toUserPage);
 
                                         }
                                         commondialog.dismiss();
@@ -185,7 +199,13 @@ public class order extends Fragment {
             holder.detail.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(),hotelpage.class);
+                    Bundle bundle = new Bundle();
+                    Hotel intentHotel = new Hotel();
 
+                    bundle.putString("hotelname",hotelname.getText().toString());
+                    intent.putExtras(bundle);
+                    getActivity().startActivity(intent);
                 }
             });
             return convertView;

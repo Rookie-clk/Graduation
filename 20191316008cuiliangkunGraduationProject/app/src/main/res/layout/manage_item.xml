@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
+        >
+        <ImageView
+            android:id="@+id/manage_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/cyber"
+            android:adjustViewBounds="true"
+            ></ImageView>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/manage_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:text="橡宿·蔓枝·现代轻奢"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            ></TextView>
+
+
+        <TextView
+            android:id="@+id/manage_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="整套·1居1床2人·地理位置优越"
+            android:layout_margin="5dp"
+            ></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+            <Button
+                android:layout_margin="5dp"
+                android:id="@+id/manage_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下架"
+                android:textColor="#fff"
+                android:background="#1E90FF"
+                android:textStyle="bold"
+                ></Button>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -296,7 +296,7 @@ public class wbo extends AppCompatActivity implements CompoundButton.OnCheckedCh
                 ByteArrayOutputStream os=new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,os);  //图片进行压缩
                 byte[] bytes=os.toByteArray();  //把输出流转成二进制数组
-                HotelDBHelper hotelDBHelper = new HotelDBHelper(wbo.this,"hotelinfo",null,1);
+                HotelDBHelper hotelDBHelper = new HotelDBHelper(wbo.this,"waithotelinfo",null,1);
                 hotelDBHelper.insertHotel(sname,sprice,region,saddress,sleixing,sshi+","+sting,smianji,sfengge,bytes,basic,tiexinsheshi,userid);
 
                 UserDBHelper userDBHelper = new UserDBHelper(wbo.this,"userinfo",null,1);

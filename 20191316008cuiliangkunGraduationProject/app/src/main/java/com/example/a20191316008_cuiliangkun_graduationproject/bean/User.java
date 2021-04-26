@@ -8,5 +8,5 @@ public class User {
     private String password;
     private byte[] avartor;
     private boolean isowner;
-
+    private boolean isadmin;
 }

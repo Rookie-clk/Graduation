@@ -116,7 +116,7 @@
             android:id="@+id/orderitem_re"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="再次预订"
+            android:text="查看"
             android:textColor="#fff"
             android:background="#1E90FF"
             android:textStyle="bold"

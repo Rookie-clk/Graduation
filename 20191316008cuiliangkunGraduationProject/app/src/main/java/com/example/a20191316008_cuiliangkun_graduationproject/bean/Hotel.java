@@ -111,4 +111,5 @@ public class Hotel {
     public void setUid(int anInt) {
         this.uid = anInt;
     }
+
 }

@@ -42,6 +42,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
         editor=sp.edit();
         pwd.setText(sp.getString("密码",""));
         username.setText(sp.getString("账号",""));
+
     }
 
     @Override
@@ -72,6 +73,7 @@ public class login extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(login.this,"登录成功！",Toast.LENGTH_LONG).show();
                     Intent toUserpage = new Intent(login.this,MainActivity.class);
                     Bundle bundle = new Bundle();
+                    bundle.putString("tab","2");
                     toUserpage.putExtras(bundle);                   //传输给hotelpage的id，并跳转
                     login.this.startActivity(toUserpage);
                 }

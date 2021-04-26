@@ -83,10 +83,10 @@ public class OrderDBHelper extends SQLiteOpenHelper {
         return list;
     }
     //查找我的订单
-    public List<Order> findMyOrder(String uid){
+    public List<Order> findMyOrder(String fangke){
         List<Order> list=new ArrayList<Order>();
         SQLiteDatabase db=this.getWritableDatabase();
-        Cursor cursor=db.query("OrderInfo",null,"uid=?",new String[]{uid},null,null,"oid desc");
+        Cursor cursor=db.query("OrderInfo",null,"fangke=?",new String[]{fangke},null,null,"oid desc");
         while(cursor.moveToNext()){
             Order or=new Order();
             or.setOid(cursor.getInt(0));
@@ -116,5 +116,15 @@ public class OrderDBHelper extends SQLiteOpenHelper {
     public boolean deleteOrder(String id){
         SQLiteDatabase db=this.getWritableDatabase();
         return db.delete("OrderInfo","oid=?",new String[]{id})>0;
+    }
+
+    public boolean ExistMyOrder(String fangke) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.query("OrderInfo",null,"fangke=?",new String[]{fangke},null,null,null);
+        if (cursor.getCount()>0){
+            return true;
+        }
+        db.close();
+        return false;
     }
 }

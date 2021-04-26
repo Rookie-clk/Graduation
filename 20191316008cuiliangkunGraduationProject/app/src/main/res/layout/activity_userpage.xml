@@ -134,6 +134,19 @@
         android:textSize="20sp"
 
         ></Button>
+    <Button
+        android:id="@+id/userpage_manageAllHotel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="管理所有民宿"
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="invisible"
+        android:textSize="20sp"
+        ></Button>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

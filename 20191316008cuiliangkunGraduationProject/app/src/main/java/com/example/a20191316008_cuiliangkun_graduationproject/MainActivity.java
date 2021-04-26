@@ -212,11 +212,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initViews();//初始化控件
         initEvents();//初始化事件
-        selectTab(0);//默认选中第一个Tab
 
+        Intent intent = getIntent();
+        Bundle bundletab = new Bundle();
+//        bundletab.putString("tab","0");
+        bundletab = intent.getExtras();
+        String tab = "0";
+        if(bundletab!=null){
+            tab = bundletab.getString("tab");
+        }
 
-
-
+        selectTab(Integer.parseInt(tab));//默认选中第一个Tab
 
     }
 

@@ -35,6 +35,7 @@ public class userpage extends Fragment implements View.OnClickListener {
     private ImageView arrow;
     private Button logoutbtn;
     private Button manage;
+    private Button manageAll;
     SharedPreferences sp;
     SharedPreferences.Editor editor;
 
@@ -48,6 +49,7 @@ public class userpage extends Fragment implements View.OnClickListener {
     }
 
     private void initEvent() {
+        manageAll.setOnClickListener(this);
         loginbtn.setOnClickListener(this);
         favorite.setOnClickListener(this);
         info.setOnClickListener(this);
@@ -57,6 +59,7 @@ public class userpage extends Fragment implements View.OnClickListener {
     }
 
     private void initView() {
+        manageAll = view.findViewById(R.id.userpage_manageAllHotel);
         loginbtn = view.findViewById(R.id.loginbtn);
         avatar= view.findViewById(R.id.userpage_avatar);
         favorite = view.findViewById(R.id.userpage_favorite);
@@ -70,7 +73,9 @@ public class userpage extends Fragment implements View.OnClickListener {
 
         sp = getActivity().getSharedPreferences("data",MODE_PRIVATE);
         editor=sp.edit();
-        if(sp.getString("账号","") !="") {            //登陆成功
+        if(sp.getString("账号","") !="") {//登陆成功
+            UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
+
             txt1.setText(sp.getString("账号", ""));
             txt2.setText("");
             arrow.setVisibility(view.INVISIBLE);
@@ -78,15 +83,19 @@ public class userpage extends Fragment implements View.OnClickListener {
             logoutbtn.setVisibility(View.VISIBLE);
 
 
-            UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
             byte[] avartarByte = userDBHelper.UserAvartor(sp.getString("账号", ""));          //设置用户界面的头像
             Bitmap avartarBitmap = getPicFromBytes(avartarByte);
             avartarBitmap = zoomBitmap(avartarBitmap,100,100);
             avatar.setImageBitmap(avartarBitmap);
-
+            if(userDBHelper.IsAdmin(sp.getString("账号",""))){
+                owner.setVisibility(View.INVISIBLE);
+                manage.setVisibility(View.INVISIBLE);
+                manageAll.setVisibility(View.VISIBLE);
+            }
             if(userDBHelper.IsOwner(sp.getString("账号",""))){
                 owner.setVisibility(View.INVISIBLE);
                 manage.setVisibility(View.VISIBLE);
+                manageAll.setVisibility(View.INVISIBLE);
             }
 
 
@@ -113,6 +122,13 @@ public class userpage extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.userpage_manageAllHotel:
+                Intent manageAllintent = new Intent(getActivity(),manageAll.class);
+//                Bundle manageAllbundle = new Bundle();
+//                managebundle.putInt("userid",userid_wbo);
+//                manageintent.putExtras(managebundle);
+                getActivity().startActivity(manageAllintent);
+                break;
             case R.id.loginbtn:
                 Intent toLogin = new Intent(getActivity(),login.class);
 
@@ -165,6 +181,7 @@ public class userpage extends Fragment implements View.OnClickListener {
                                 logoutbtn.setVisibility(View.INVISIBLE);
                                 manage.setVisibility(View.INVISIBLE);
                                 owner.setVisibility(View.VISIBLE);
+                                manageAll.setVisibility(View.INVISIBLE);
                                 commondialog.dismiss();
                             }
 
@@ -174,6 +191,13 @@ public class userpage extends Fragment implements View.OnClickListener {
                             }
                         });
                 commondialog.show();
+                break;
+            case R.id.userpage_manageMyHotel:
+                Intent manageintent = new Intent(getActivity(),manage.class);
+                Bundle managebundle = new Bundle();
+//                managebundle.putInt("userid",userid_wbo);
+//                manageintent.putExtras(managebundle);
+                getActivity().startActivity(manageintent);
                 break;
         }
     }
