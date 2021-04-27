@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a20191316008_cuiliangkun_graduationproject.bean.Hotel;
+import com.example.a20191316008_cuiliangkun_graduationproject.database.HStatusDBHelper;
 import com.example.a20191316008_cuiliangkun_graduationproject.database.HotelDBHelper;
 import com.example.a20191316008_cuiliangkun_graduationproject.database.UserDBHelper;
 
@@ -150,6 +151,28 @@ public class manage extends AppCompatActivity {
             String temHuxing[] = my.getHuxing().split(",");
             String temDetail = my.getType()+"·"+temHuxing[0]+"室"+temHuxing[1]+"厅"+"·"+my.getStyle();    //设置简要细节
             des.setText(temDetail);
+            HStatusDBHelper hStatusDBHelper = new HStatusDBHelper(manage.this,"statusinfo",null ,1);
+             if(!hStatusDBHelper.ExistStatus(my.getId()+"")){
+                 TextView status = convertView.findViewById(R.id.manage_status);
+                 status.setText("未审核");
+                 status.setVisibility(View.VISIBLE);
+
+            }else{
+                if(hStatusDBHelper.Status(my.getId()+"")){
+                    //通过
+                    TextView status;
+                    status = convertView.findViewById(R.id.manage_status);
+                    status.setText("已通过");
+                    status.setVisibility(View.VISIBLE);
+                }else{
+                    //不通过
+                    TextView status;
+                    status = convertView.findViewById(R.id.manage_status);
+                    status.setText("已驳回");
+                    status.setVisibility(View.VISIBLE);
+                }
+            }
+
 
             byte[] ImageByte = my.getPicture();
             Bitmap ImageBitmap = getPicFromBytes(ImageByte);            //设置图片

@@ -12,6 +12,14 @@
         android:orientation="horizontal"
         android:background="#1E90FF"
         >
+        <ImageButton
+            android:id="@+id/manage_all_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/back"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="#00000000"></ImageButton>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"

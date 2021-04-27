@@ -12,7 +12,7 @@
         android:layout_marginBottom="5dp"
         >
         <ImageView
-            android:id="@+id/manage_img"
+            android:id="@+id/manage_all_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/cyber"
@@ -27,7 +27,7 @@
         android:orientation="vertical"
         >
         <TextView
-            android:id="@+id/manage_name"
+            android:id="@+id/manage_all_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000"
@@ -39,7 +39,7 @@
 
 
         <TextView
-            android:id="@+id/manage_des"
+            android:id="@+id/manage_all_des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="整套·1居1床2人·地理位置优越"
@@ -52,7 +52,7 @@
             android:orientation="horizontal"
             android:gravity="right">
             <TextView
-                android:id="@+id/manage_status"
+                android:id="@+id/manage_all_passornot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="通过"
@@ -64,10 +64,20 @@
                 ></TextView>
             <Button
                 android:layout_margin="5dp"
-                android:id="@+id/manage_delete"
+                android:id="@+id/manage_all_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="下架"
+                android:text="通过"
+                android:textColor="#fff"
+                android:background="#1E90FF"
+                android:textStyle="bold"
+                ></Button>
+            <Button
+                android:layout_margin="5dp"
+                android:id="@+id/manage_all_retain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="不通过"
                 android:textColor="#fff"
                 android:background="#1E90FF"
                 android:textStyle="bold"

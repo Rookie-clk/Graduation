@@ -182,6 +182,11 @@ public class userpage extends Fragment implements View.OnClickListener {
                                 manage.setVisibility(View.INVISIBLE);
                                 owner.setVisibility(View.VISIBLE);
                                 manageAll.setVisibility(View.INVISIBLE);
+                                Intent toUserpage = new Intent(getActivity(),MainActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("tab","2");
+                                toUserpage.putExtras(bundle);                   //传输给hotelpage的id，并跳转
+                                getActivity().startActivity(toUserpage);
                                 commondialog.dismiss();
                             }
 

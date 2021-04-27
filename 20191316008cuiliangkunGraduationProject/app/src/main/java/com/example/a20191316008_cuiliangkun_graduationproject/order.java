@@ -37,8 +37,7 @@ public class order extends Fragment {
     private ImageView img;
     public View view;
     private List<Order> Allorder;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
+
 
 
     @Nullable
@@ -56,19 +55,26 @@ public class order extends Fragment {
 
         OrderDBHelper orderDBHelper = new OrderDBHelper(getActivity(),"orderinfo",null,1);
         UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
+        SharedPreferences sp;
+        SharedPreferences.Editor editor;
         sp = getActivity().getSharedPreferences("data",MODE_PRIVATE);
         editor=sp.edit();
-        int userid = userDBHelper.UserID(sp.getString("账号", ""));
-
-        if (orderDBHelper.ExistMyOrder(userid+"")){
-            Allorder = orderDBHelper.findMyOrder(userid+"");
-            OrderAdapter orderAdapter = new OrderAdapter();
-
-            order.setAdapter(orderAdapter);
-
-        }else{
+        if(sp.getString("账号", "")==""){
             img.setVisibility(View.VISIBLE);
+
+        }else {//登录
+            int userid = userDBHelper.UserID(sp.getString("账号", ""));
+            if (orderDBHelper.ExistMyOrder(userid+"")){
+                Allorder = orderDBHelper.findMyOrder(userid+"");
+                OrderAdapter orderAdapter = new OrderAdapter();
+                order.setAdapter(orderAdapter);
+                img.setVisibility(View.INVISIBLE);
+
+            }else{
+                img.setVisibility(View.VISIBLE);
+            }
         }
+
 
     }
     public static Bitmap getPicFromBytes(byte[] bytes) {

@@ -69,7 +69,7 @@ public class Hotel {
         return region;
     }
     public void setRegion(String string) {
-        this.region = region;
+        this.region = string;
     }
 
     public String getType() {
