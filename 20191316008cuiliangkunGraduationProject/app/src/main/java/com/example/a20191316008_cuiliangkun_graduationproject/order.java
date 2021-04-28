@@ -26,6 +26,7 @@ import com.example.a20191316008_cuiliangkun_graduationproject.bean.Hotel;
 import com.example.a20191316008_cuiliangkun_graduationproject.bean.Order;
 import com.example.a20191316008_cuiliangkun_graduationproject.database.HotelDBHelper;
 import com.example.a20191316008_cuiliangkun_graduationproject.database.OrderDBHelper;
+import com.example.a20191316008_cuiliangkun_graduationproject.database.ReviewDBHelper;
 import com.example.a20191316008_cuiliangkun_graduationproject.database.UserDBHelper;
 
 import java.util.List;
@@ -121,9 +122,8 @@ public class order extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             convertView = View.inflate(getActivity(),R.layout.order_item,null);
-            UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
+            final UserDBHelper userDBHelper = new UserDBHelper(getActivity(),"userinfo",null,1);
             final HotelDBHelper hotelDBHelper = new HotelDBHelper(getActivity(),"hotelinfo",null,1);
-
             final TextView hotelname  = convertView.findViewById(R.id.orderitem_hotelname);
             TextView hotelprice = convertView.findViewById(R.id.orderitem_hotelprice);
             TextView shenfenzheng = convertView.findViewById(R.id.orderitem_shenfenzheng);
@@ -134,7 +134,7 @@ public class order extends Fragment {
 
             final Order tmpOrder = Allorder.get(position);
             String tmphid = tmpOrder.getHid().toString();                   //根据order中的id查询民宿
-            Hotel tmpHotel = hotelDBHelper.findHotelByid(tmphid);
+            final Hotel tmpHotel = hotelDBHelper.findHotelByid(tmphid);
 
             byte[] ImageByte = tmpHotel.getPicture();
             Bitmap ImageBitmap = getPicFromBytes(ImageByte);            //设置图片
@@ -199,7 +199,22 @@ public class order extends Fragment {
             holder.review.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    ReviewDBHelper reviewDBHelper = new ReviewDBHelper(getActivity(),"reviewinfo",null,1);
+                    SharedPreferences sp;
+                    SharedPreferences.Editor editor;
+                    sp = getActivity().getSharedPreferences("data",MODE_PRIVATE);
+                    editor=sp.edit();
+                    int userid = userDBHelper.UserID(sp.getString("账号", ""));
+                    if(reviewDBHelper.isReviewed(userid+"",tmpHotel.getId())){
+                        Toast.makeText(getActivity(),"您已经评论过了！",Toast.LENGTH_LONG).show();
+                        return;
+                    }
 
+                    Intent toReview = new Intent(getActivity(),review.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("hotelname",hotelname.getText().toString());
+                    toReview.putExtras(bundle);
+                    getActivity().startActivity(toReview);
                 }
             });
             holder.detail.setOnClickListener(new View.OnClickListener() {
@@ -207,8 +222,6 @@ public class order extends Fragment {
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(),hotelpage.class);
                     Bundle bundle = new Bundle();
-                    Hotel intentHotel = new Hotel();
-
                     bundle.putString("hotelname",hotelname.getText().toString());
                     intent.putExtras(bundle);
                     getActivity().startActivity(intent);

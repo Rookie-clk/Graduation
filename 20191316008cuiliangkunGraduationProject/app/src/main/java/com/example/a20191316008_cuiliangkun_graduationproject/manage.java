@@ -195,8 +195,9 @@ public class manage extends AppCompatActivity {
                                 public void onPositiveClick() {
                                     HotelDBHelper whotelDBHelper = new HotelDBHelper(manage.this,"waithotelinfo",null,1);
                                     HotelDBHelper hotelDBHelper = new HotelDBHelper(manage.this,"hotelinfo",null,1);
-
+                                    HStatusDBHelper statusDBHelper = new HStatusDBHelper(manage.this,"statusinfo",null ,1);
                                     whotelDBHelper.deleteHotel(my.getId().toString());
+                                    statusDBHelper.deleteStatus(my.getId().toString());
                                     if(hotelDBHelper.ExistHotelById(my.getId().toString())){
                                         hotelDBHelper.deleteHotel(my.getId().toString());
                                     }
@@ -224,12 +225,13 @@ public class manage extends AppCompatActivity {
 
 
 
+
             return convertView;
         }
         class ViewHolder {
             Button delete;
 
-            Button detail;
+
         }
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -22,7 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a20191316008_cuiliangkun_graduationproject.bean.Hotel;
+import com.example.a20191316008_cuiliangkun_graduationproject.bean.Review;
+import com.example.a20191316008_cuiliangkun_graduationproject.bean.User;
 import com.example.a20191316008_cuiliangkun_graduationproject.database.HotelDBHelper;
+import com.example.a20191316008_cuiliangkun_graduationproject.database.ReviewDBHelper;
+import com.example.a20191316008_cuiliangkun_graduationproject.database.UserDBHelper;
 
 import java.util.List;
 
@@ -47,17 +52,14 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
     private TextView aixinsheshi;
     private ListView otherlist;
     private TextView score2;
-    private TextView miaoshu;
-    private TextView zhoudao;
-    private TextView bianli;
     private TextView weisheng;
-    private TextView xingjiabi;
-    private TextView bianjie;
+    private TextView huanjing;
+    private TextView fuwu;
+    private TextView sheshi;
     private ImageView avatar;
     private TextView username;
-    private TextView date;
+    private ListView reviewlist;
     private TextView detail;
-    private Button btn_quanbupinglun;
     private List<Hotel> hotelList;
     private Hotel tmp;
     private List<Hotel> myHotel;
@@ -65,7 +67,10 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
     private TextView address;
     private Button btn_yuding;
     String intenthotelname;
+    UserDBHelper userDBHelper = new UserDBHelper(hotelpage.this,"userinfo",null,1);
     HotelDBHelper hotelDBHelper = new HotelDBHelper(hotelpage.this,"hotelinfo",null,1);
+    ReviewDBHelper reviewDBHelper = new ReviewDBHelper(hotelpage.this,"reviewinfo",null,1);
+    List<Review> allreview ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +82,7 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         hotelList = hotelDBHelper.findHotelByName(intenthotelname);
         tmp = hotelList.get(0);
         myHotel = hotelDBHelper.findMyHotel(String.valueOf(tmp.getUid()));
-
+        allreview = reviewDBHelper.findAllReview(tmp.getId()+"");
         init();
         initEvent();
         show();
@@ -114,6 +119,8 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
             }
         });
         setListViewHeightBasedOnChildren(otherlist);
+        reviewlist.setAdapter(new reviewAdapter());
+        setListViewHeightBasedOnChildren(reviewlist);
     }
     class otherAdapter extends BaseAdapter{
 
@@ -142,7 +149,6 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
 
             Hotel my = myHotel.get(position);
 
-//            Toast.makeText(hotelpage.this,myHotel.size()+"",Toast.LENGTH_LONG).show();
             other_name.setText(my.getName());
 
             byte[] ImageByte = my.getPicture();
@@ -198,17 +204,17 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         jichusheshi = findViewById(R.id.hotelpage_jichusheshi);
         aixinsheshi = findViewById(R.id.hotelpage_aixinsheshi);
         otherlist = findViewById(R.id.hotelpage_other_list);
-        miaoshu = findViewById(R.id.rushimiaoshu);
-        zhoudao = findViewById(R.id.fuwuzhoudao);
-        bianli = findViewById(R.id.weizhibianli);
-        weisheng = findViewById(R.id.ganjingweisheng);
-        xingjiabi = findViewById(R.id.gaoxingjiabi);
-        bianjie = findViewById(R.id.ruzhubianjie);
+        weisheng = findViewById(R.id.weisheng);
+        huanjing = findViewById(R.id.huanjing);
+        fuwu = findViewById(R.id.fuwu);
+        weisheng = findViewById(R.id.weisheng);
+        reviewlist = findViewById(R.id.hotelpage_reviewlist);
+
         avatar = findViewById(R.id.hotelpage_avatar);
         username = findViewById(R.id.hotelpage_username);
-        date = findViewById(R.id.hotelpage_ruzhuriqi);
+
         detail = findViewById(R.id.hotelpage_pinglun);
-        btn_quanbupinglun = findViewById(R.id.hotelpage_btn_quanbupinglun);
+
         address = findViewById(R.id.hotelpage_address);
         price = findViewById(R.id.hotelpage_price);
 
@@ -220,8 +226,10 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
     private void initEvent() {
         btn_back.setOnClickListener(this);
         btn_love.setOnClickListener(this);
-        btn_quanbupinglun.setOnClickListener(this);
+
         btn_yuding.setOnClickListener(this);
+//        reviewlist.setAdapter(new reviewAdapter());
+//        setListViewHeightBasedOnChildren(reviewlist);
     }
 
     @Override
@@ -243,8 +251,7 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
                 super.onBackPressed();
                 break;
 
-            case R.id.hotelpage_btn_quanbupinglun:
-                break;
+
             case R.id.hotelpage_yuding:
                 Intent intent = new Intent(hotelpage.this,yuding.class);
                 Bundle bundle = new Bundle();
@@ -256,16 +263,16 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
     }
 
 
-    class MyBaseAdapter extends BaseAdapter{
+    class reviewAdapter extends BaseAdapter{
 
         @Override
         public int getCount() {
-            return icons.length;
+            return allreview.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return icons[position];
+            return allreview.get(position);
         }
 
         @Override
@@ -275,7 +282,25 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            return null;
+            SharedPreferences sp;
+            SharedPreferences.Editor editor;
+            sp = hotelpage.this.getSharedPreferences("data",MODE_PRIVATE);
+            editor=sp.edit();
+            convertView = View.inflate(hotelpage.this,R.layout.review_item,null);
+            ImageView avatar = convertView.findViewById(R.id.hotelpage_avatar);
+            TextView uname = convertView.findViewById(R.id.hotelpage_username);
+            TextView pinglun = convertView.findViewById(R.id.hotelpage_pinglun);
+            Review tmpreview = allreview.get(position);
+            int userid = tmpreview.getUid();
+
+            byte[] ImageByte = userDBHelper.UserAvartorByid(userid+"");
+            Bitmap ImageBitmap = getPicFromBytes(ImageByte);            //设置图片
+            ImageBitmap = zoomBitmap(ImageBitmap,600,600);
+            avatar.setImageBitmap(ImageBitmap);
+
+            uname.setText(sp.getString("账号",""));
+            pinglun.setText(tmpreview.getDetail());
+            return convertView;
         }
     }
 }

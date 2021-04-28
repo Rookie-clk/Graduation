@@ -66,4 +66,8 @@ public class HStatusDBHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    public boolean deleteStatus(String toString) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        return db.delete("StatusInfo","hid=?",new String[]{toString})>0;
+    }
 }

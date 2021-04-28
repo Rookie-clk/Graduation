@@ -248,13 +248,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 >
                 <ListView
                     android:id="@+id/hotelpage_other_list"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_margin="10dp">
                 </ListView>
             </LinearLayout>
@@ -355,10 +353,10 @@
                    <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="如实描述"
+                   android:text="卫生"
                    android:layout_marginLeft="10dp"></TextView>
                    <TextView
-                       android:id="@+id/rushimiaoshu"
+                       android:id="@+id/weisheng"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:textStyle="bold"
@@ -369,10 +367,10 @@
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:text="服务周到"
+                       android:text="环境"
                        android:layout_marginLeft="10dp"></TextView>
                    <TextView
-                       android:id="@+id/fuwuzhoudao"
+                       android:id="@+id/huanjing"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:textStyle="bold"
@@ -389,10 +387,10 @@
                        <TextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:text="位置便利 "
+                           android:text="服务"
                            android:layout_marginLeft="10dp"></TextView>
                        <TextView
-                           android:id="@+id/weizhibianli"
+                           android:id="@+id/fuwu"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:textStyle="bold"
@@ -403,43 +401,10 @@
                        <TextView
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
-                           android:text="干净卫生"
+                           android:text="设施"
                            android:layout_marginLeft="10dp"></TextView>
                        <TextView
-                           android:id="@+id/ganjingweisheng"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textStyle="bold"
-                           android:text="5.0"
-                           android:textColor="#000"
-                           android:layout_marginLeft="3dp"
-                           ></TextView>
-                   </LinearLayout>
-                   <LinearLayout
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:orientation="horizontal">
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="高性价比"
-                           android:layout_marginLeft="10dp"></TextView>
-                       <TextView
-                           android:id="@+id/gaoxingjiabi"
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:textStyle="bold"
-                           android:text="5.0"
-                           android:textColor="#000"
-                           android:layout_marginLeft="3dp"
-                           ></TextView>
-                       <TextView
-                           android:layout_width="wrap_content"
-                           android:layout_height="wrap_content"
-                           android:text="入住便捷"
-                           android:layout_marginLeft="10dp"></TextView>
-                       <TextView
-                           android:id="@+id/ruzhubianjie"
+                           android:id="@+id/sheshi"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:textStyle="bold"
@@ -448,7 +413,9 @@
                            android:layout_marginLeft="3dp"
                            ></TextView>
                    </LinearLayout>
+
                </LinearLayout>
+
            </LinearLayout>
 
 
@@ -456,67 +423,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="10dp">
-
+                >
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#F5F5F5"
-                    android:orientation="horizontal"
-                    >
-                    <ImageView
-                        android:id="@+id/hotelpage_avatar"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/avatar"
-                        android:layout_margin="10dp"
-                        android:layout_gravity="center"></ImageView>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ListView
+                        android:id="@+id/hotelpage_reviewlist"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_margin="10dp">
-                    <TextView
-                        android:id="@+id/hotelpage_username"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="clk111"
-                        android:textColor="#000"
-                        android:textStyle="bold"
-
-                        ></TextView>
-                    <TextView
-                        android:id="@+id/hotelpage_ruzhuriqi"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="xxxx-xx-xx入住"
-
-                        ></TextView>
-
-                        <TextView
-                            android:id="@+id/hotelpage_pinglun"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="房子很好，孩子很喜欢，下次还会来1111111111111111111111111111111111111111111111"
-                            android:textColor="#000"
-                            android:layout_marginTop="5dp"
-                            ></TextView>
-                    </LinearLayout>
+                    </ListView>
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/hotelpage_btn_quanbupinglun"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:text="查看全部评论>"
-                    android:textColor="#1E90FF"
-                    android:layout_margin="5dp"
-                    android:background="#00000000"
-                    android:textStyle="bold"
-                    ></Button>
             </LinearLayout>
 
             <LinearLayout

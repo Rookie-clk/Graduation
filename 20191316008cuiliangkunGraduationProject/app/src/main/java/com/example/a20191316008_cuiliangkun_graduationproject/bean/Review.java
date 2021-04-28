@@ -4,12 +4,11 @@ public class Review {
     private Integer Rid;
     private Integer Hid;
     private Integer Uid;
-    private int Description;
-    private int Service;
-    private int Location;
-    private int Clean;
-    private int Price;
-    private int Convenient;
+    private String total;
+    private String weisheng;
+    private String huanjing;
+    private String fuwu;
+    private String sheshi;
     private String Detail;
 
     public void setRid(int anInt) {
@@ -24,31 +23,63 @@ public class Review {
         this.Uid = anInt;
     }
 
-    public void setDes(int anInt) {
-        this.Description = anInt;
+    public void setTotal(String anInt) {
+        this.total = anInt;
     }
 
-    public void setSer(int anInt) {
-        this.Service = anInt;
+    public void setWeisheng(String anInt) {
+        this.weisheng = anInt;
     }
 
-    public void setLoc(int anInt) {
-        this.Location = anInt;
+    public void setHuanjing(String anInt) {
+        this.huanjing = anInt;
     }
 
-    public void setCle(int anInt) {
-        this.Clean = anInt;
+    public void setFuwu(String anInt) {
+        this.fuwu = anInt;
     }
 
-    public void setPri(int anInt) {
-        this.Price = anInt;
-    }
-
-    public void setCon(int anInt) {
-        this.Convenient = anInt;
+    public void setSheshi(String anInt) {
+        this.sheshi = anInt;
     }
 
     public void setDetail(String string) {
         this.Detail = string;
+    }
+
+    public Integer getUid() {
+        return Uid;
+    }
+
+    public Integer getHid() {
+        return Hid;
+    }
+
+    public Integer getRid() {
+        return Rid;
+    }
+
+    public String getDetail() {
+        return Detail;
+    }
+
+    public String getFuwu() {
+        return fuwu;
+    }
+
+    public String getHuanjing() {
+        return huanjing;
+    }
+
+    public String getSheshi() {
+        return sheshi;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public String getWeisheng() {
+        return weisheng;
     }
 }

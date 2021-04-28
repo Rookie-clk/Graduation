@@ -153,6 +153,11 @@ public class manageAll extends AppCompatActivity {
                 public void onClick(View v) {
                     HotelDBHelper waithotelDBHelper = new HotelDBHelper(manageAll.this,"waithotelinfo",null,1);
                     HotelDBHelper hotelDBHelper = new HotelDBHelper(manageAll.this,"hotelinfo",null ,1);
+                    HStatusDBHelper statusdb = new HStatusDBHelper(manageAll.this,"statusinfo",null ,1);
+                    statusdb.SetStatus2N(wait.getId()+"");
+                    Intent refresh = new Intent(manageAll.this,manageAll.class);
+                    manageAll.this.startActivity(refresh);
+                    Toast.makeText(manageAll.this,"审核不通过！",Toast.LENGTH_LONG).show();
 
                 }
             });
