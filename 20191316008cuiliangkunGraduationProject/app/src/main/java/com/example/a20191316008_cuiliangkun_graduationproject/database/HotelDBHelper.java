@@ -66,6 +66,18 @@ public class HotelDBHelper extends SQLiteOpenHelper {
         return false;
     }
 
+    //根据name判断民宿是否存在
+    public boolean ExistHotelByName(String hname){
+
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.query("HotelInfo",null,"hname=?",new String[]{hname},null,null,null);
+        if (cursor.getCount()>0){
+            return true;
+        }
+        db.close();
+        return false;
+    }
+
     public void insertHotel(String name, String price,String region, String address,String type, String huxing, String square,String style, byte[] picture,String cequip,String lequip,int uid){
         SQLiteDatabase db=this.getWritableDatabase();
         ContentValues values=new ContentValues();

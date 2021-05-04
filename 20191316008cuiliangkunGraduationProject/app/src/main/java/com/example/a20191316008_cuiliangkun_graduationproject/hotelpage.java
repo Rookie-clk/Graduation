@@ -121,6 +121,9 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         setListViewHeightBasedOnChildren(otherlist);
         reviewlist.setAdapter(new reviewAdapter());
         setListViewHeightBasedOnChildren(reviewlist);
+        if(allreview.size() == 0){
+            Toast.makeText(hotelpage.this,"暂无",Toast.LENGTH_SHORT).show();
+        }
     }
     class otherAdapter extends BaseAdapter{
 

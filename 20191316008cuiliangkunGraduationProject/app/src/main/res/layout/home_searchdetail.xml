@@ -6,29 +6,15 @@
     android:layout_margin="15dp"
     android:id="@+id/home_searchdetail_Lin"
     >
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="全球城市/区域/位置"
-    android:textColor="#000"
-    ></EditText>
+
     <EditText
+        android:id="@+id/search_edit_region"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="入住日期"
-        ></EditText>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="关键字/位置/民宿名"
-        ></EditText>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="关键字/位置/民宿名"
+        android:hint="地区"
         ></EditText>
     <Button
-        android:id="@+id/search"
+        android:id="@+id/search_btn_region"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
