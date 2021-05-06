@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -30,11 +31,12 @@ public class dom_search_frag extends Fragment {
             @Override
             public void onClick(View v) {
                 String region = ed_region.getText().toString().trim();
-                HotelDBHelper hotelDBHelper = new HotelDBHelper(getActivity(),"hotelinfo",null,1);
-                List<Hotel> regionHotel = hotelDBHelper.findHotelByRegion(region);
                 Intent toResult = new Intent(getActivity(),searchresult.class);
                 Bundle bundle = new Bundle();
-                
+                bundle.putString("region",region);
+                toResult.putExtras(bundle);                   //传输给hotelpage的id，并跳转
+                getActivity().startActivity(toResult);
+
             }
         });
         return view;

@@ -1,5 +1,7 @@
 package com.example.a20191316008_cuiliangkun_graduationproject.bean;
 
+import java.io.Serializable;
+
 public class Hotel {
     private Integer id;
     private String name;

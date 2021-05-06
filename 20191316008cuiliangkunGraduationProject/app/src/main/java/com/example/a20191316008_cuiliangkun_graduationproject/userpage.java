@@ -51,8 +51,8 @@ public class userpage extends Fragment implements View.OnClickListener {
     private void initEvent() {
         manageAll.setOnClickListener(this);
         loginbtn.setOnClickListener(this);
-        favorite.setOnClickListener(this);
-        info.setOnClickListener(this);
+//        favorite.setOnClickListener(this);
+//        info.setOnClickListener(this);
         owner.setOnClickListener(this);
         logoutbtn.setOnClickListener(this);
         manage.setOnClickListener(this);
@@ -62,8 +62,8 @@ public class userpage extends Fragment implements View.OnClickListener {
         manageAll = view.findViewById(R.id.userpage_manageAllHotel);
         loginbtn = view.findViewById(R.id.loginbtn);
         avatar= view.findViewById(R.id.userpage_avatar);
-        favorite = view.findViewById(R.id.userpage_favorite);
-        info = view.findViewById(R.id.userpage_info);
+//        favorite = view.findViewById(R.id.userpage_favorite);
+//        info = view.findViewById(R.id.userpage_info);
         owner = view.findViewById(R.id.userpage_wantbeowner);
         txt1 = view.findViewById(R.id.userpage_logintxt);
         txt2 = view.findViewById(R.id.userpage_logintxt2);
@@ -134,18 +134,18 @@ public class userpage extends Fragment implements View.OnClickListener {
 
                 getActivity().startActivity(toLogin);
                 break;
-            case R.id.userpage_favorite:
-                int userid = 1;
-                Intent intent = new Intent(getActivity(),favorite.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt("hotelid",userid);
-                intent.putExtras(bundle);                   //传输给hotelpage的id，并跳转
-                getActivity().startActivity(intent);
-
-                break;
-            case R.id.userpage_info:
-
-                break;
+//            case R.id.userpage_favorite:
+//                int userid = 1;
+//                Intent intent = new Intent(getActivity(),favorite.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putInt("hotelid",userid);
+//                intent.putExtras(bundle);                   //传输给hotelpage的id，并跳转
+//                getActivity().startActivity(intent);
+//
+//                break;
+//            case R.id.userpage_info:
+//
+//                break;
             case R.id.userpage_wantbeowner:
                 if(sp.getString("账号", "")==""){
                     Toast.makeText(getActivity(),"请先登录！",Toast.LENGTH_LONG).show();
