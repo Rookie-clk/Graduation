@@ -78,6 +78,16 @@ public class UserDBHelper extends SQLiteOpenHelper {
         db.close();
         return avartor;
     }
+    //返回用户的名称
+    public String UserName(String userid){
+        String username;
+        SQLiteDatabase db=this.getWritableDatabase();
+        Cursor cursor=db.query("UserInfo",null,"uid=?",new String[]{userid},null,null,null);
+        cursor.moveToFirst();
+        username = cursor.getString(1);
+        db.close();
+        return username;
+    }
     //返回用户的头像
     public byte[] UserAvartorByid(String uid){
         byte[] avartor;

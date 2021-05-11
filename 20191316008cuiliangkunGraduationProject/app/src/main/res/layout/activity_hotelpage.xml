@@ -235,7 +235,7 @@
                 android:textSize="25sp"
                 android:textStyle="bold"
                 android:textColor="#000"
-                android:text="房东其他房源"
+                android:text="房东所有房源"
                 android:layout_margin="10dp"
                 ></TextView>
             <View
@@ -355,15 +355,16 @@
                    android:layout_height="wrap_content"
                    android:text="卫生"
                    android:layout_marginLeft="10dp"></TextView>
+
                    <TextView
                        android:id="@+id/weisheng"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
-                       android:textStyle="bold"
+                       android:layout_marginLeft="3dp"
                        android:text="5.0"
                        android:textColor="#000"
-                       android:layout_marginLeft="3dp"
-                       ></TextView>
+                       android:textStyle="bold"></TextView>
+
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"

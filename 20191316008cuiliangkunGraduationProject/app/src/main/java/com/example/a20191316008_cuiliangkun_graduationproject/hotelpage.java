@@ -33,11 +33,7 @@ import java.util.List;
 
 public class hotelpage extends AppCompatActivity implements View.OnClickListener {
 
-    private int[] icons = {R.drawable.beach,R.drawable.cyber,R.drawable.pool};
-    private String[] details = {"原木双1.8米大床浴缸房，免费私家车接送迪士尼乐园8分钟，有餐厅可以点餐，有泳池、网红海洋球池",
-            "南京路步行街 人民广场 外滩 大床房",
-            "迪缘小舍/迪士尼乐园接送/日式白色屋顶"};                 //listview
-    private String[] prices = {"￥628","￥455","￥575"};
+
     private ImageButton btn_back ;
     private  ImageButton btn_love;
     int count = 0;
@@ -52,10 +48,10 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
     private TextView aixinsheshi;
     private ListView otherlist;
     private TextView score2;
-    private TextView weisheng;
-    private TextView huanjing;
-    private TextView fuwu;
-    private TextView sheshi;
+    private TextView Text_weisheng;
+    private TextView Text_huanjing;
+    private TextView Text_fuwu;
+    private TextView Text_sheshi;
     private ImageView avatar;
     private TextView username;
     private ListView reviewlist;
@@ -122,8 +118,36 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         reviewlist.setAdapter(new reviewAdapter());
         setListViewHeightBasedOnChildren(reviewlist);
         if(allreview.size() == 0){
-            Toast.makeText(hotelpage.this,"暂无",Toast.LENGTH_SHORT).show();
+
         }
+        double zongfen = 0;
+        double weisheng = 0;
+        double huanjing = 0;
+        double fuwu = 0;
+        double sheshi = 0;
+        for(int i = 0;i< allreview.size();i++){
+            zongfen += Integer.valueOf(allreview.get(i).getTotal());
+            zongfen = zongfen / allreview.size();
+
+            weisheng += Integer.valueOf(allreview.get(i).getWeisheng());
+            weisheng = weisheng / allreview.size();
+
+            huanjing += Integer.valueOf(allreview.get(i).getHuanjing());
+            huanjing = huanjing / allreview.size();
+
+            fuwu += Integer.valueOf(allreview.get(i).getFuwu());
+            fuwu = fuwu / allreview.size();
+
+            sheshi += Integer.valueOf(allreview.get(i).getSheshi());
+            sheshi = sheshi / allreview.size();
+        }
+        score2.setText(zongfen+"");
+        Text_fuwu.setText(fuwu+"");
+        Text_sheshi.setText(sheshi+"");
+        Text_weisheng.setText(weisheng+"");
+        Text_huanjing.setText(huanjing+"");
+
+
     }
     class otherAdapter extends BaseAdapter{
 
@@ -207,10 +231,10 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         jichusheshi = findViewById(R.id.hotelpage_jichusheshi);
         aixinsheshi = findViewById(R.id.hotelpage_aixinsheshi);
         otherlist = findViewById(R.id.hotelpage_other_list);
-        weisheng = findViewById(R.id.weisheng);
-        huanjing = findViewById(R.id.huanjing);
-        fuwu = findViewById(R.id.fuwu);
-        weisheng = findViewById(R.id.weisheng);
+//        weisheng = findViewById(R.id.weisheng);
+//        huanjing = findViewById(R.id.huanjing);
+//        fuwu = findViewById(R.id.fuwu);
+//        weisheng = findViewById(R.id.weisheng);
         reviewlist = findViewById(R.id.hotelpage_reviewlist);
 
         avatar = findViewById(R.id.hotelpage_avatar);
@@ -224,6 +248,12 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
         btn_back = findViewById(R.id.hotelpage_back);
         btn_love = findViewById(R.id.hotelpage_love);
         btn_yuding = findViewById(R.id.hotelpage_yuding);
+
+        Text_weisheng = findViewById(R.id.weisheng);
+        Text_fuwu = findViewById(R.id.fuwu);
+        Text_sheshi = findViewById(R.id.sheshi);
+        Text_huanjing = findViewById(R.id.huanjing);
+
     }
 
     private void initEvent() {
@@ -293,6 +323,11 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
             ImageView avatar = convertView.findViewById(R.id.hotelpage_avatar);
             TextView uname = convertView.findViewById(R.id.hotelpage_username);
             TextView pinglun = convertView.findViewById(R.id.hotelpage_pinglun);
+            TextView pweisheng = convertView.findViewById(R.id.hotelpage_pweisheng);
+            TextView phuanjing = convertView.findViewById(R.id.hotelpage_phuanjing);
+            TextView pfuwu = convertView.findViewById(R.id.hotelpage_pfuwu);
+            TextView psheshi = convertView.findViewById(R.id.hotelpage_psheshi);
+
             Review tmpreview = allreview.get(position);
             int userid = tmpreview.getUid();
 
@@ -301,8 +336,13 @@ public class hotelpage extends AppCompatActivity implements View.OnClickListener
             ImageBitmap = zoomBitmap(ImageBitmap,600,600);
             avatar.setImageBitmap(ImageBitmap);
 
-            uname.setText(sp.getString("账号",""));
+
+            uname.setText(userDBHelper.UserName(userid+""));
             pinglun.setText(tmpreview.getDetail());
+            pweisheng.setText(tmpreview.getWeisheng()+".0");
+            phuanjing.setText(tmpreview.getHuanjing()+".0");
+            pfuwu.setText(tmpreview.getFuwu()+".0");
+            psheshi.setText(tmpreview.getSheshi()+".0");
             return convertView;
         }
     }
